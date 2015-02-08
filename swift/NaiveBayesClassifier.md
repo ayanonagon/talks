@@ -18,6 +18,19 @@ Ayaka Nonaka
 
 ---
 
+[spam example]
+
+---
+
+[ham example]
+
+---
+
+
+[ambiguous example]
+
+---
+
 # Naive Bayes Classifier
 
 ---
@@ -266,14 +279,6 @@ $$
 
 ---
 
-Throw in another word, $$Z$$.
-
-$$
-\frac{P(spam)P(S|spam)P(C|spam \cap S)P(Z|spam \cap S \cap C)}{P(S)P(C|S)P(Z|S \cap C)}
-$$
-
----
-
 * 30 emails of a total of 50 are spam
 * 20 out of the total 50 contain the word SODIUM
 * 15 of the emails that contain the word SODIUM are spam
@@ -318,6 +323,14 @@ $$
 
 $$
 = \frac{\frac{30}{50}\frac{15}{30}P(C|spam \cap S)}{\frac{20}{50}P(C|S)}
+$$
+
+---
+
+Throw in another word, $$Z$$.
+
+$$
+\frac{P(spam)P(S|spam)P(C|spam \cap S)P(Z|spam \cap S \cap C)}{P(S)P(C|S)P(Z|S \cap C)}
 $$
 
 ---
@@ -426,7 +439,31 @@ $$
 
 ---
 
-[More derivation of Naive Bayes]
+$$
+D = {w_1, w_2, ..., w_n}
+$$
+
+$$
+P(spam|D) = \frac{P(spam) P(w_1|spam) P(w_2|spam) ... P(w_n|spam)}{P(w_1) P(w_2) ... P(w_n)}
+$$
+
+---
+
+$$
+categorization = argmax_C \frac{P(C) P(w_1|C) P(w_2|C) ... P(w_n|C)}{P(w_1) P(w_2) ... P(w_n)}
+$$
+
+$$
+= argmax_C P(C) P(w_1|C) P(w_2|C) ... P(w_n|C)
+$$
+
+$$
+= argmax_C log(P(C) P(w_1|C) P(w_2|C) ... P(w_n|C))
+$$
+
+$$
+= argmax_C log(P(C)) + log(P(w_1|C)) + log(P(w_2|C)) + log(P(w_n|C))
+$$
 
 ---
 
@@ -442,3 +479,17 @@ $$
 * Part of speech tagging
 * Language detection
 
+---
+
+# Swift Playgrounds
+
+---
+
+##github.com/ayanonagon/Parsimmon
+
+---
+
+# ???
+### @ayanonagon
+
+---
