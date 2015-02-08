@@ -354,6 +354,78 @@ $$
 
 ---
 
+* 30 emails of a total of 50 are spam
+* 20 out of the total 50 contain the word SODIUM
+* 15 of the emails that contain the word SODIUM are spam
+* 15 out of the total 50 contain the word CHOLESTEROL
+* 10 of the emails that contain the word CHOLESTEROL are spam
+
+$$
+= \frac{\frac{30}{50}\frac{15}{30}P(C|spam \cap S)}{\frac{20}{50}P(C|S)}
+$$
+
+---
+
+* 30 emails of a total of 50 are spam
+* 20 out of the total 50 contain the word SODIUM
+* 15 of the emails that contain the word SODIUM are spam
+* 15 out of the total 50 contain the word CHOLESTEROL
+* 10 of the emails that contain the word CHOLESTEROL are spam
+
+$$
+= \frac{\frac{30}{50}\frac{15}{30}P(C|spam)}{\frac{20}{50}P(C|S)}
+$$
+
+---
+
+* 30 emails of a total of 50 are spam
+* 20 out of the total 50 contain the word SODIUM
+* 15 of the emails that contain the word SODIUM are spam
+* 15 out of the total 50 contain the word CHOLESTEROL
+* 10 of the emails that contain the word CHOLESTEROL are spam
+
+$$
+= \frac{\frac{30}{50}\frac{15}{30}P(C|spam)}{\frac{20}{50}P(C)}
+$$
+
+---
+
+* 30 emails of a total of 50 are spam
+* 20 out of the total 50 contain the word SODIUM
+* 15 of the emails that contain the word SODIUM are spam
+* 15 out of the total 50 contain the word CHOLESTEROL
+* 10 of the emails that contain the word CHOLESTEROL are spam
+
+$$
+= \frac{\frac{30}{50}\frac{15}{30}\frac{10}{30}}{\frac{20}{50}P(C)}
+$$
+
+---
+
+* 30 emails of a total of 50 are spam
+* 20 out of the total 50 contain the word SODIUM
+* 15 of the emails that contain the word SODIUM are spam
+* 15 out of the total 50 contain the word CHOLESTEROL
+* 10 of the emails that contain the word CHOLESTEROL are spam
+
+$$
+= \frac{\frac{30}{50}\frac{15}{30}\frac{10}{30}}{\frac{20}{50}\frac{15}{50}}
+$$
+
+---
+
+* 30 emails of a total of 50 are spam
+* 20 out of the total 50 contain the word SODIUM
+* 15 of the emails that contain the word SODIUM are spam
+* 15 out of the total 50 contain the word CHOLESTEROL
+* 10 of the emails that contain the word CHOLESTEROL are spam
+
+$$
+= \frac{\frac{30}{50}\frac{15}{30}\frac{10}{30}}{\frac{20}{50}\frac{15}{50}} \approx 0.83
+$$
+
+---
+
 [More derivation of Naive Bayes]
 
 ---
