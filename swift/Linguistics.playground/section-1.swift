@@ -2,7 +2,7 @@
 
 import Foundation
 
-typealias Tokens = Array<String>
+typealias Tokens = [String]
 
 func tag(text: String, scheme: String) -> Tokens {
     let options: NSLinguisticTaggerOptions = .OmitWhitespace | .OmitPunctuation | .OmitOther
@@ -32,9 +32,31 @@ func lemmatize(text: String) -> Tokens {
     return tag(text, NSLinguisticTagSchemeLemma)
 }
 
+lemmatize("")
+
 func language(text: String) -> Tokens {
     return tag(text, NSLinguisticTagSchemeLanguage)
 }
 
 language("Hoe gaat het met jou?")
+language("Ich bin Ayaka")
 language("こんにちは")
+
+func name(text: String) -> Tokens {
+    return tag(text, NSLinguisticTagSchemeNameTypeOrLexicalClass)
+}
+
+name("I am on a plane to New York right now")
+name("I am in San Francisco")
+
+class NaiveBayesClassifier {
+    var categoryCounts = [String : Int]()
+    var categoryWordCounts = [String : [String : Int]]()
+    init() {
+
+    }
+
+    func trainWithTokens(tokens: Tokens) {
+
+    }
+}
