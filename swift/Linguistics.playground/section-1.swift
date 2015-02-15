@@ -2,15 +2,15 @@
 
 import Foundation
 
-typealias Tokens = [String]
+typealias Token = String
 
-func tag(text: String, scheme: String) -> Tokens {
+func tag(text: String, scheme: String) -> [Token] {
     let options: NSLinguisticTaggerOptions = .OmitWhitespace | .OmitPunctuation | .OmitOther
     let tagger = NSLinguisticTagger(tagSchemes: NSLinguisticTagger.availableTagSchemesForLanguage("en"),
         options: Int(options.rawValue))
     tagger.string = text
 
-    var tokens: Tokens = []
+    var tokens: [Token] = []
 
     tagger.enumerateTagsInRange(NSMakeRange(0, countElements(text)), scheme:scheme, options: options) { tag, tokenRange, _, _ in
         if (tag != nil) {
@@ -22,19 +22,19 @@ func tag(text: String, scheme: String) -> Tokens {
     return tokens
 }
 
-func partOfSpeech(text: String) -> Tokens {
+func partOfSpeech(text: String) -> [Token] {
     return tag(text, NSLinguisticTagSchemeLexicalClass)
 }
 
 partOfSpeech("The quick brown fox")
 
-func lemmatize(text: String) -> Tokens {
+func lemmatize(text: String) -> [Token] {
     return tag(text, NSLinguisticTagSchemeLemma)
 }
 
 lemmatize("")
 
-func language(text: String) -> Tokens {
+func language(text: String) -> [Token] {
     return tag(text, NSLinguisticTagSchemeLanguage)
 }
 
@@ -42,7 +42,7 @@ language("Hoe gaat het met jou?")
 language("Ich bin Ayaka")
 language("こんにちは")
 
-func name(text: String) -> Tokens {
+func name(text: String) -> [Token] {
     return tag(text, NSLinguisticTagSchemeNameTypeOrLexicalClass)
 }
 
@@ -50,7 +50,6 @@ name("I am on a plane to New York right now")
 name("I am in San Francisco")
 
 typealias Category = String
-typealias Token = String
 
 class NaiveBayesClassifier {
     var categoryCounts: [Category : Int]
