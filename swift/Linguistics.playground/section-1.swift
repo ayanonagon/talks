@@ -49,14 +49,23 @@ func name(text: String) -> Tokens {
 name("I am on a plane to New York right now")
 name("I am in San Francisco")
 
+typealias Category = String
+typealias Token = String
+
 class NaiveBayesClassifier {
-    var categoryCounts = [String : Int]()
-    var categoryWordCounts = [String : [String : Int]]()
+    var categoryCounts: [Category : Int]
+    var categoryTokenCounts: [Category : [Token : Int]]
+
     init() {
+        categoryCounts = [Category : Int]()
+        categoryTokenCounts = [Category : [Token : Int]]()
+    }
+
+    func trainWithExample(text: String, category: Category) {
 
     }
 
-    func trainWithTokens(tokens: Tokens) {
-
+    func classify(text: String) -> Category {
+        return "ham"
     }
 }
