@@ -3,38 +3,36 @@
 import Foundation
 
 typealias Token = String
+typealias TaggedToken = (Token, String) // Can’t add tuples to an array without typealias. Compiler bug...
 
-func tag(text: String, scheme: String) -> [Token] {
+func tag(text: String, scheme: String) -> [TaggedToken] {
     let options: NSLinguisticTaggerOptions = .OmitWhitespace | .OmitPunctuation | .OmitOther
     let tagger = NSLinguisticTagger(tagSchemes: NSLinguisticTagger.availableTagSchemesForLanguage("en"),
         options: Int(options.rawValue))
     tagger.string = text
 
-    var tokens: [Token] = []
+    var tokens: [TaggedToken] = []
 
     tagger.enumerateTagsInRange(NSMakeRange(0, countElements(text)), scheme:scheme, options: options) { tag, tokenRange, _, _ in
-        if (tag != nil) {
-            tokens.append(tag)
-        } else {
-            tokens.append((text as NSString).substringWithRange(tokenRange))
-        }
+        let token = (text as NSString).substringWithRange(tokenRange)
+        tokens.append((token, tag))
     }
     return tokens
 }
 
-func partOfSpeech(text: String) -> [Token] {
+func partOfSpeech(text: String) -> [TaggedToken] {
     return tag(text, NSLinguisticTagSchemeLexicalClass)
 }
 
 partOfSpeech("The quick brown fox")
 
-func lemmatize(text: String) -> [Token] {
+func lemmatize(text: String) -> [TaggedToken] {
     return tag(text, NSLinguisticTagSchemeLemma)
 }
 
 lemmatize("I went to the store")
 
-func language(text: String) -> [Token] {
+func language(text: String) -> [TaggedToken] {
     return tag(text, NSLinguisticTagSchemeLanguage)
 }
 
@@ -42,7 +40,7 @@ language("Hoe gaat het met jou?")
 language("Ich bin Ayaka")
 language("こんにちは")
 
-func name(text: String) -> [Token] {
+func name(text: String) -> [TaggedToken] {
     return tag(text, NSLinguisticTagSchemeNameTypeOrLexicalClass)
 }
 
@@ -54,19 +52,22 @@ typealias Category = String
 class NaiveBayesClassifier {
     var categoryCounts: [Category : Int]
     var categoryTokenCounts: [Category : [Token : Int]]
+    var trainingCount: Int
 
     init() {
         categoryCounts = [Category : Int]()
         categoryTokenCounts = [Category : [Token : Int]]()
+        trainingCount = 0
     }
 
     func trainWithExample(text: String, category: Category) {
         incrementCategory(category)
         let tokens = lemmatize(text) // TODO: Tokenize, not lemmatize
         // TODO: Remove duplicates in tokens
-        for token in tokens {
+        for (token, _) in tokens {
             incrementCategoryTokenCount(category, token: token)
         }
+        trainingCount += 1
     }
 
     func incrementCategory(category: Category) {
