@@ -32,7 +32,7 @@ func lemmatize(text: String) -> [Token] {
     return tag(text, NSLinguisticTagSchemeLemma)
 }
 
-lemmatize("")
+lemmatize("I went to the store")
 
 func language(text: String) -> [Token] {
     return tag(text, NSLinguisticTagSchemeLanguage)
@@ -61,10 +61,34 @@ class NaiveBayesClassifier {
     }
 
     func trainWithExample(text: String, category: Category) {
+        incrementCategory(category)
+        let tokens = lemmatize(text) // TODO: Tokenize, not lemmatize
+        // TODO: Remove duplicates in tokens
+        for token in tokens {
+            incrementCategoryTokenCount(category, token: token)
+        }
+    }
 
+    func incrementCategory(category: Category) {
+        if (categoryCounts[category] == nil) {
+            categoryCounts[category] = 0
+        }
+        categoryCounts[category] = categoryCounts[category]! + 1
+    }
+
+    func incrementCategoryTokenCount(category: Category, token: Token) {
+        if (categoryTokenCounts[category] == nil) {
+            categoryTokenCounts[category] = [Token : Int]()
+        }
+        if (categoryTokenCounts[category]![token] == nil) {
+            categoryTokenCounts[category]![token] = 0
+        }
+        categoryTokenCounts[category]![token]! = categoryTokenCounts[category]![token]! + 1
     }
 
     func classify(text: String) -> Category {
-        return "ham"
+        // TODO: Implement
+        return ""
     }
 }
+
