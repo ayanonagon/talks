@@ -18,16 +18,24 @@ Ayaka Nonaka
 
 ---
 
-[spam example]
+URGENT - HELP ME DISTRIBUTE MY $15 MILLION TO CHARITY
+
+IN SUMMARY:- I have 15,000,000.00 (fifteen million) U.S. Dollars and I want you to assist me in distributing the money to charity organizations. I agree to reward you with part of the money for your assistance, kindness and participation in this Godly project. This mail might come to you as a surprise and the temptation to ignore it as unserious could come into your mind but please consider it a divine wish and accept it with a deep sense of humility.
 
 ---
 
-[ham example]
+See you at Natural Language Processing in Swift with Ayaka Nonaka of Venmo
+Swift Language User Group (San Francisco + Silicon Valley)
+Invite 1 friend
+Simply forward this email to a friend and have them join the Meetup.
 
 ---
 
-
-[ambiguous example]
+Forming a new startup and need an iOS developer to partner with and join me on this new, exciting venture. This startup will be the next “big thing” in social media, creating a new way for users to connect with one another, essentially creating its own niche among facebook, twitter and foursquare.
+If interested please contact the information below.
+XXXX XXXX
+XXXXX@XXXXX.XXX
+XXX XXX XXXX
 
 ---
 
