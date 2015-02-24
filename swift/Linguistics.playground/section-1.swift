@@ -1,4 +1,4 @@
-// Linguistics.swift
+// Linguistics.playground
 
 import Foundation
 
@@ -47,6 +47,12 @@ func name(text: String) -> [TaggedToken] {
 name("I am on a plane to New York right now")
 name("I am in San Francisco")
 
+func tokenize(text: String) -> [Token] {
+    return partOfSpeech(text).map { (token, tag) in
+        return token
+    }
+}
+
 typealias Category = String
 
 private let smoothingParameter = 1.0
@@ -62,6 +68,10 @@ public class NaiveBayesClassifier {
 
     // MARK: - Training
 
+    public func trainWithText(text: String, category: Category) {
+        self.trainWithTokens(tokenize(text), category: category)
+    }
+
     public func trainWithTokens(tokens: [Word], category: Category) {
         let words = Set(tokens)
         for word in words {
@@ -72,6 +82,10 @@ public class NaiveBayesClassifier {
     }
 
     // MARK: - Classifying
+
+    public func classifyText(text: String) -> Category? {
+        return self.classifyTokens(tokenize(text))
+    }
 
     public func classifyTokens(tokens: [Word]) -> Category? {
         // Compute argmax_cat [log(P(C=cat)) + sum_token(log(P(W=token|C=cat)))]
@@ -134,13 +148,13 @@ public class NaiveBayesClassifier {
 
 let nbc = NaiveBayesClassifier()
 
-nbc.trainWithTokens(["what", "does", "the", "fox", "say"], category: "spam")
-nbc.trainWithTokens(["fish", "go", "blub"], category: "spam")
-nbc.trainWithTokens(["spammy", "spam", "spam"], category: "spam")
+nbc.trainWithText("spammy spam spam", category: "spam")
+nbc.trainWithText("what does the fox say?", category: "spam")
+nbc.trainWithText("and fish go blub", category: "spam")
 
-nbc.trainWithTokens(["nom", "nom", "ham"], category: "ham")
-nbc.trainWithTokens(["make", "sure", "to", "get", "the", "ham"], category: "ham")
-nbc.trainWithTokens(["please", "put", "the", "eggs", "the", "fridge"], category: "ham")
+nbc.trainWithText("nom nom ham", category: "ham")
+nbc.trainWithText("make sure to get the ham", category: "ham")
+nbc.trainWithText("please put the eggs in the fridge", category: "ham")
 
-nbc.classifyTokens(["what", "does", "the", "fish", "say"])
-nbc.classifyTokens(["use", "the", "eggs", "in", "the", "fridge"])
+nbc.classifyText("what does the fish say?")
+nbc.classifyText("use the eggs in the fridge")
