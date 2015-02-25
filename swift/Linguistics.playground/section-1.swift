@@ -3,7 +3,7 @@
 import Foundation
 
 typealias Token = String
-typealias TaggedToken = (Token, String) // Can’t add tuples to an array without typealias. Compiler bug...
+typealias TaggedToken = (Token, String?) // Can’t add tuples to an array without typealias. Compiler bug...
 
 func tag(text: String, scheme: String) -> [TaggedToken] {
     let options: NSLinguisticTaggerOptions = .OmitWhitespace | .OmitPunctuation | .OmitOther
@@ -47,35 +47,35 @@ func name(text: String) -> [TaggedToken] {
 name("I am on a plane to New York right now")
 name("I am in San Francisco")
 
-func tokenize(text: String) -> [Token] {
-    return partOfSpeech(text).map { (token, tag) in
-        return token
-    }
-}
-
 typealias Category = String
 
 private let smoothingParameter = 1.0
 
 public class NaiveBayesClassifier {
-    public typealias Word = String
+    public typealias Token = String
     public typealias Category = String
 
+    private let tokenizer: String -> [Token]
+
     private var categoryOccurrences: [Category: Int] = [:]
-    private var wordOccurrences: [Word: [Category: Int]] = [:]
+    private var tokenOccurrences: [Token: [Category: Int]] = [:]
     private var trainingCount = 0
-    private var wordCount = 0
+    private var tokenCount = 0
+
+    public init(tokenizer: (String -> [Token])) {
+        self.tokenizer = tokenizer
+    }
 
     // MARK: - Training
 
     public func trainWithText(text: String, category: Category) {
-        self.trainWithTokens(tokenize(text), category: category)
+        self.trainWithTokens(tokenizer(text), category: category)
     }
 
-    public func trainWithTokens(tokens: [Word], category: Category) {
-        let words = Set(tokens)
-        for word in words {
-            incrementWord(word, category: category)
+    public func trainWithTokens(tokens: [Token], category: Category) {
+        let tokens = Set(tokens)
+        for token in tokens {
+            incrementToken(token, category: category)
         }
         incrementCategory(category)
         trainingCount++
@@ -84,17 +84,17 @@ public class NaiveBayesClassifier {
     // MARK: - Classifying
 
     public func classifyText(text: String) -> Category? {
-        return self.classifyTokens(tokenize(text))
+        return self.classifyTokens(tokenizer(text))
     }
 
-    public func classifyTokens(tokens: [Word]) -> Category? {
+    public func classifyTokens(tokens: [Token]) -> Category? {
         // Compute argmax_cat [log(P(C=cat)) + sum_token(log(P(W=token|C=cat)))]
         var maxCategory: Category?
         var maxCategoryScore = -Double.infinity
         for (category, _) in categoryOccurrences {
             let pCategory = self.P(category)
             let score = tokens.reduce(log(pCategory)) { (total, token) in
-                total + log((self.P(category, token) + smoothingParameter) / (pCategory + smoothingParameter + Double(self.wordCount)))
+                total + log((self.P(category, token) + smoothingParameter) / (pCategory + smoothingParameter + Double(self.tokenCount)))
             }
             if score > maxCategoryScore {
                 maxCategory = category
@@ -106,8 +106,8 @@ public class NaiveBayesClassifier {
 
     // MARK: - Probabilites
 
-    private func P(category: Category, _ word: Word) -> Double {
-        if let occurrences = wordOccurrences[word] {
+    private func P(category: Category, _ token: Token) -> Double {
+        if let occurrences = tokenOccurrences[token] {
             let count = occurrences[category] ?? 0
             return Double(count) / Double(trainingCount)
         }
@@ -120,22 +120,22 @@ public class NaiveBayesClassifier {
 
     // MARK: - Counting
 
-    private func incrementWord(word: Word, category: Category) {
-        if wordOccurrences[word] == nil {
-            wordCount++
-            wordOccurrences[word] = [:]
+    private func incrementToken(token: Token, category: Category) {
+        if tokenOccurrences[token] == nil {
+            tokenCount++
+            tokenOccurrences[token] = [:]
         }
 
-        let count = wordOccurrences[word]?[category] ?? 0
-        wordOccurrences[word]?[category] = count + 1
+        let count = tokenOccurrences[token]?[category] ?? 0
+        tokenOccurrences[token]?[category] = count + 1
     }
 
     private func incrementCategory(category: Category) {
         categoryOccurrences[category] = totalOccurrencesOfCategory(category) + 1
     }
 
-    private func totalOccurrencesOfWord(word: Word) -> Int {
-        if let occurrences = wordOccurrences[word] {
+    private func totalOccurrencesOfToken(token: Token) -> Int {
+        if let occurrences = tokenOccurrences[token] {
             return Array(occurrences.values).reduce(0, combine: +)
         }
         return 0
@@ -146,7 +146,11 @@ public class NaiveBayesClassifier {
     }
 }
 
-let nbc = NaiveBayesClassifier()
+let nbc = NaiveBayesClassifier { (text: String) -> [Token] in
+    return partOfSpeech(text).map { (token, tag) in
+        return token
+    }
+}
 
 nbc.trainWithText("spammy spam spam", category: "spam")
 nbc.trainWithText("what does the fox say?", category: "spam")
