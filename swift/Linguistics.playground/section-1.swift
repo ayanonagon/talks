@@ -2,8 +2,7 @@
 
 import Foundation
 
-typealias Token = String
-typealias TaggedToken = (Token, String?) // Can’t add tuples to an array without typealias. Compiler bug...
+typealias TaggedToken = (String, String?) // Can’t add tuples to an array without typealias. Compiler bug... Sigh.
 
 func tag(text: String, scheme: String) -> [TaggedToken] {
     let options: NSLinguisticTaggerOptions = .OmitWhitespace | .OmitPunctuation | .OmitOther
@@ -46,8 +45,6 @@ func name(text: String) -> [TaggedToken] {
 
 name("I am on a plane to New York right now")
 name("I am in San Francisco")
-
-typealias Category = String
 
 private let smoothingParameter = 1.0
 
@@ -146,19 +143,21 @@ public class NaiveBayesClassifier {
     }
 }
 
-let nbc = NaiveBayesClassifier { (text: String) -> [Token] in
-    return partOfSpeech(text).map { (token, tag) in
-        return token
+let nbc = NaiveBayesClassifier { (text: String) -> [String] in
+    return lemmatize(text).map { (token, tag) in
+        return tag ?? token
     }
 }
 
 nbc.trainWithText("spammy spam spam", category: "spam")
-nbc.trainWithText("what does the fox say?", category: "spam")
-nbc.trainWithText("and fish go blub", category: "spam")
+nbc.trainWithText("spam has a lot of sodium and cholesterol", category: "spam")
 
 nbc.trainWithText("nom nom ham", category: "ham")
-nbc.trainWithText("make sure to get the ham", category: "ham")
-nbc.trainWithText("please put the eggs in the fridge", category: "ham")
+nbc.trainWithText("please put the ham and eggs in the fridge", category: "ham")
 
-nbc.classifyText("what does the fish say?")
+nbc.classifyText("sodium and cholesterol")
 nbc.classifyText("use the eggs in the fridge")
+nbc.classifyText("ham and eggs")
+nbc.classifyText("do you like spam?")
+nbc.classifyText("did you like spam?")
+nbc.classifyText("do you like ham?")
