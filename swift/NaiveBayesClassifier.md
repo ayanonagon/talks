@@ -523,6 +523,10 @@ $$
 
 ---
 
+# bit.ly/swiftnbc
+
+---
+
 # NLTK
 ## nltk.org
 
