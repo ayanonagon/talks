@@ -461,6 +461,36 @@ $$
 categorization = argmax_C \frac{P(C) P(w_1|C) P(w_2|C) ... P(w_n|C)}{P(w_1) P(w_2) ... P(w_n)}
 $$
 
+---
+
+$$
+categorization = argmax_C \frac{P(C) P(w_1|C) P(w_2|C) ... P(w_n|C)}{P(w_1) P(w_2) ... P(w_n)}
+$$
+
+$$
+= argmax_C P(C) P(w_1|C) P(w_2|C) ... P(w_n|C)
+$$
+
+---
+
+$$
+categorization = argmax_C \frac{P(C) P(w_1|C) P(w_2|C) ... P(w_n|C)}{P(w_1) P(w_2) ... P(w_n)}
+$$
+
+$$
+= argmax_C P(C) P(w_1|C) P(w_2|C) ... P(w_n|C)
+$$
+
+$$
+= argmax_C log(P(C) P(w_1|C) P(w_2|C) ... P(w_n|C))
+$$
+
+---
+
+$$
+categorization = argmax_C \frac{P(C) P(w_1|C) P(w_2|C) ... P(w_n|C)}{P(w_1) P(w_2) ... P(w_n)}
+$$
+
 $$
 = argmax_C P(C) P(w_1|C) P(w_2|C) ... P(w_n|C)
 $$
