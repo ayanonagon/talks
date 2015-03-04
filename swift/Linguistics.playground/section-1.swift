@@ -32,10 +32,6 @@ func language(text: String) -> [TaggedToken] {
     return tag(text, NSLinguisticTagSchemeLanguage)
 }
 
-func name(text: String) -> [TaggedToken] {
-    return tag(text, NSLinguisticTagSchemeNameType)
-}
-
 public class NaiveBayesClassifier {
     public typealias Category = String
 
