@@ -457,14 +457,32 @@ $$
 
 ---
 
+### $$P(spam|D)$$ vs. $$P(ham|D)$$
+
+---
+
 $$
-categorization = argmax_C \frac{P(C) P(w_1|C) P(w_2|C) ... P(w_n|C)}{P(w_1) P(w_2) ... P(w_n)}
+categorization = argmax_C P(C|D)
 $$
 
 ---
 
 $$
-categorization = argmax_C \frac{P(C) P(w_1|C) P(w_2|C) ... P(w_n|C)}{P(w_1) P(w_2) ... P(w_n)}
+categorization = argmax_C P(C|D)
+$$
+
+$$
+= argmax_C \frac{P(C) P(w_1|C) P(w_2|C) ... P(w_n|C)}{P(w_1) P(w_2) ... P(w_n)}
+$$
+
+---
+
+$$
+categorization = argmax_C P(C|D)
+$$
+
+$$
+= argmax_C \frac{P(C) P(w_1|C) P(w_2|C) ... P(w_n|C)}{P(w_1) P(w_2) ... P(w_n)}
 $$
 
 $$
@@ -474,7 +492,11 @@ $$
 ---
 
 $$
-categorization = argmax_C \frac{P(C) P(w_1|C) P(w_2|C) ... P(w_n|C)}{P(w_1) P(w_2) ... P(w_n)}
+categorization = argmax_C P(C|D)
+$$
+
+$$
+= argmax_C \frac{P(C) P(w_1|C) P(w_2|C) ... P(w_n|C)}{P(w_1) P(w_2) ... P(w_n)}
 $$
 
 $$
@@ -488,7 +510,11 @@ $$
 ---
 
 $$
-categorization = argmax_C \frac{P(C) P(w_1|C) P(w_2|C) ... P(w_n|C)}{P(w_1) P(w_2) ... P(w_n)}
+categorization = argmax_C P(C|D)
+$$
+
+$$
+= argmax_C \frac{P(C) P(w_1|C) P(w_2|C) ... P(w_n|C)}{P(w_1) P(w_2) ... P(w_n)}
 $$
 
 $$
@@ -512,6 +538,8 @@ $$
 # NSLinguisticTagger
 
 ---
+
+# NSLinguisticTagger
 
 * Lemmatization
 * Part of speech tagging
