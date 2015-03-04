@@ -530,6 +530,7 @@ $$
 ---
 
 # bit.ly/swiftnbc
+### (Swift 1.2)
 
 ---
 
