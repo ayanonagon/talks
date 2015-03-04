@@ -260,28 +260,6 @@ $$
 $$
 
 $$
-= \frac{P(spam \cap S \cap C)}{P(S)P(C|S)}
-$$
-
----
-
-$$
-P(spam|S \cap C)
-$$
-
-$$
-= \frac{P(spam)P(S \cap C|spam)}{P(S \cap C)}
-$$
-
-$$
-= \frac{P(spam)P(S \cap C|spam)}{P(S)P(C|S)}
-$$
-
-$$
-= \frac{P(spam \cap S \cap C)}{P(S)P(C|S)}
-$$
-
-$$
 = \frac{P(spam)P(S|spam)P(C|spam \cap S)}{P(S)P(C|S)}
 $$
 
