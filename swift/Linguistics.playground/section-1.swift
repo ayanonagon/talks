@@ -77,7 +77,7 @@ public class NaiveBayesClassifier {
             let pCategory = P(category)
             let score = tokens.reduce(log(pCategory)) { (total, token) in
                 // P(W=token|C=cat) = P(C=cat, W=token) / P(C=cat)
-                total + log((P(category, token) + smoothingParameter) / (pCategory + smoothingParameter + Double(tokenCount)))
+                total + log((P(category, token) + smoothingParameter) / (pCategory + smoothingParameter * Double(tokenCount)))
             }
             if score > maxCategoryScore {
                 maxCategory = category
