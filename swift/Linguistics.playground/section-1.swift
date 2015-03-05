@@ -146,4 +146,4 @@ nbc.classifyText("use the eggs in the fridge")
 nbc.classifyText("ham and eggs")
 nbc.classifyText("do you like ham?")
 
-nbc.classifyText("did you eat an egg?")
+nbc.classifyText("do you eat egg?")
