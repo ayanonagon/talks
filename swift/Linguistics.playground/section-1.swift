@@ -51,7 +51,7 @@ public class NaiveBayesClassifier {
     // MARK: - Training
 
     public func trainWithText(text: String, category: Category) {
-        self.trainWithTokens(tokenizer(text), category: category)
+        trainWithTokens(tokenizer(text), category: category)
     }
 
     public func trainWithTokens(tokens: [String], category: Category) {
@@ -66,7 +66,7 @@ public class NaiveBayesClassifier {
     // MARK: - Classifying
 
     public func classifyText(text: String) -> Category? {
-        return self.classifyTokens(tokenizer(text))
+        return classifyTokens(tokenizer(text))
     }
 
     public func classifyTokens(tokens: [String]) -> Category? {
@@ -74,10 +74,10 @@ public class NaiveBayesClassifier {
         var maxCategory: Category?
         var maxCategoryScore = -Double.infinity
         for (category, _) in categoryOccurrences {
-            let pCategory = self.P(category)
+            let pCategory = P(category)
             let score = tokens.reduce(log(pCategory)) { (total, token) in
                 // P(W=token|C=cat) = P(C=cat, W=token) / P(C=cat)
-                total + log((self.P(category, token) + smoothingParameter) / (pCategory + smoothingParameter + Double(self.tokenCount)))
+                total + log((P(category, token) + smoothingParameter) / (pCategory + smoothingParameter + Double(tokenCount)))
             }
             if score > maxCategoryScore {
                 maxCategory = category
@@ -90,11 +90,7 @@ public class NaiveBayesClassifier {
     // MARK: - Probabilites
 
     private func P(category: Category, _ token: String) -> Double {
-        if let occurrences = tokenOccurrences[token] {
-            let count = occurrences[category] ?? 0
-            return Double(count) / Double(trainingCount)
-        }
-        return 0.0
+        return Double(tokenOccurrences[token]?[category] ?? 0) / Double(trainingCount)
     }
 
     private func P(category: Category) -> Double {
@@ -109,8 +105,9 @@ public class NaiveBayesClassifier {
             tokenOccurrences[token] = [:]
         }
 
-        let count = tokenOccurrences[token]?[category] ?? 0
-        tokenOccurrences[token]?[category] = count + 1
+        // Force unwrap to crash instead of providing faulty results.
+        let count = tokenOccurrences[token]![category] ?? 0
+        tokenOccurrences[token]![category] = count + 1
     }
 
     private func incrementCategory(category: Category) {
@@ -119,7 +116,7 @@ public class NaiveBayesClassifier {
 
     private func totalOccurrencesOfToken(token: String) -> Int {
         if let occurrences = tokenOccurrences[token] {
-            return Array(occurrences.values).reduce(0, combine: +)
+            return reduce(occurrences.values, 0, +)
         }
         return 0
     }
@@ -130,7 +127,7 @@ public class NaiveBayesClassifier {
 }
 
 let nbc = NaiveBayesClassifier { (text: String) -> [String] in
-    return partOfSpeech(text).map { (token, tag) in
+    return partOfSpeech(text).map { (token, _) in
         return token
     }
 }
