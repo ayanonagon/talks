@@ -127,9 +127,7 @@ public class NaiveBayesClassifier {
 }
 
 let nbc = NaiveBayesClassifier { (text: String) -> [String] in
-    return partOfSpeech(text).map { (token, _) in
-        return token
-    }
+    return text.componentsSeparatedByString(" ")
 }
 
 nbc.trainWithText("spammy spam spam", category: "spam")
