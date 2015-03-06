@@ -2,15 +2,13 @@
 
 import Foundation
 
-typealias TaggedToken = (String, String?) // Can’t add tuples to an array without typealias. Compiler bug... Sigh.
-
-func tag(text: String, scheme: String) -> [TaggedToken] {
+func tag(text: String, scheme: String) -> [(String, String?)] {
     let options: NSLinguisticTaggerOptions = .OmitWhitespace | .OmitPunctuation | .OmitOther
     let tagger = NSLinguisticTagger(tagSchemes: NSLinguisticTagger.availableTagSchemesForLanguage("en"),
         options: Int(options.rawValue))
     tagger.string = text
 
-    var tokens: [TaggedToken] = []
+    var tokens = [(String, String?)]()
 
     // Using NSLinguisticTagger
     tagger.enumerateTagsInRange(NSMakeRange(0, count(text)), scheme:scheme, options: options) { tag, tokenRange, _, _ in
@@ -20,15 +18,15 @@ func tag(text: String, scheme: String) -> [TaggedToken] {
     return tokens
 }
 
-func partOfSpeech(text: String) -> [TaggedToken] {
+func partOfSpeech(text: String) -> [(String, String?)] {
     return tag(text, NSLinguisticTagSchemeLexicalClass)
 }
 
-func lemmatize(text: String) -> [TaggedToken] {
+func lemmatize(text: String) -> [(String, String?)] {
     return tag(text, NSLinguisticTagSchemeLemma)
 }
 
-func language(text: String) -> [TaggedToken] {
+func language(text: String) -> [(String, String?)] {
     return tag(text, NSLinguisticTagSchemeLanguage)
 }
 
