@@ -4,7 +4,6 @@ One of my goals this year is to present at more places. Here is my up-to-date sc
 
 | Date       | Title | Where |
 | ---------- | ----- | ----- |
-| 5 Mar 2015 | Natural Language Processing with Swift | [Swift Language User Group @ Realm][4] |
 | 21 - 22 Mar 2015 | TBA | [Swift Summit][5] |
 
 
@@ -12,6 +11,7 @@ One of my goals this year is to present at more places. Here is my up-to-date sc
 
 | Date        | Title | Where |
 | ----------- | ----- | ----- |
+| 5 Mar 2015 | [Natural Language Processing with Swift][6] | [Swift Language User Group @ Realm][4] |
 | 31 Jul 2014 | [Open-source @ Venmo][3] | Braintree / Venmo Product Talk (Internal) |
 | 29 Jul 2014 | [Building DryDock on Parse][2] | [July Bay Area Parse Meetup][1] |
 | 30 Jan 2014 | Lightning Talk: Venmo iOS SDK | [iOS Build-an-App Workshop (WWC)][0] |
@@ -22,3 +22,4 @@ One of my goals this year is to present at more places. Here is my up-to-date sc
 [3]: https://speakerdeck.com/ayanonagon/open-source-at-venmo "Open-source @ Venmo"
 [4]: http://www.meetup.com/swift-language/events/220351309/
 [5]: https://www.swiftsummit.com
+[6]: https://speakerdeck.com/ayanonagon/natural-language-processing-with-swift
