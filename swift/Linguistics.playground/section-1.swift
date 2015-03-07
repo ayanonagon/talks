@@ -24,13 +24,22 @@ func partOfSpeech(text: String) -> [TaggedToken] {
     return tag(text, NSLinguisticTagSchemeLexicalClass)
 }
 
+partOfSpeech("I went to the store")
+partOfSpeech("I am talking quickly")
+
 func lemmatize(text: String) -> [TaggedToken] {
     return tag(text, NSLinguisticTagSchemeLemma)
 }
 
+lemmatize("I went to the store")
+
 func language(text: String) -> [TaggedToken] {
     return tag(text, NSLinguisticTagSchemeLanguage)
 }
+
+language("Ik ben Ayaka")
+language("Ich bin Ayaka")
+language("私の名前は彩花です")
 
 public class NaiveBayesClassifier {
     public typealias Category = String
@@ -127,7 +136,9 @@ public class NaiveBayesClassifier {
 }
 
 let nbc = NaiveBayesClassifier { (text: String) -> [String] in
-    return text.componentsSeparatedByString(" ")
+    return lemmatize(text).map { (token, tag) in
+        return tag ?? token
+    }
 }
 
 nbc.trainWithText("spammy spam spam", category: "spam")
