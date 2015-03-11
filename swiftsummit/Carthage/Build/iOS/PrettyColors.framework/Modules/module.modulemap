@@ -1,0 +1,10 @@
+framework module PrettyColors {
+  umbrella header "PrettyColors.h"
+
+  export *
+  module * { export * }
+}
+
+module PrettyColors.Swift {
+    header "PrettyColors-Swift.h"
+}
