@@ -33,6 +33,10 @@ swift could be fun!
 
 ---
 
+[snippet from venmo-image-assets script]
+
+---
+
 # Scripting?
 
 ---
@@ -42,6 +46,18 @@ swift could be fun!
 * Run from CLI
 * Light-weight (no Xcode projects?)
 * Tooling
+
+---
+
+### #!/usr/bin/env xcrun swift
+
+---
+
+### chmod +x hello.swift
+
+---
+
+### ./hello.swift
 
 ---
 
@@ -105,6 +121,12 @@ Alamofire.framework    PrettyColors.framework
 
 ---
 
+## /Library/Frameworks
+## ?
+
+---
+
+
 ```
 ➜  swiftsummit git:(master) ✗ swift -help
 OVERVIEW: Swift compiler
@@ -121,6 +143,12 @@ OPTIONS:
 ```
 #!/usr/bin/env xcrun swift -F Carthage/Build/iOS
 ```
+
+---
+
+* jdhealy/PrettyColors
+* another/example
+* another/example
 
 ---
 
