@@ -4,16 +4,135 @@
 
 ---
 
+# **Designers**
+# Engineers
+
+---
+
+# :moyai:
+
+* Designer designs and exports assets
+
+---
+
+# :moyai:
+
+* Designer designs and exports assets
+* Upload to Dropbox or send over Slack
+
+---
+
+# :moyai:
+
+* Designer designs and exports assets
+* Upload to Dropbox or send over Slack
+* Engineer adds to venmo-ios codebase
+
+---
+
+# :sob:
+
+---
+
+# :sob:
+
+* So many Dropbox links & Slack messages, gets confusing
+
+---
+
+# :sob:
+
+* So many Dropbox links & Slack messages, gets confusing
+* Sometimes assets sizes are wrong
+
+---
+
+# :sob:
+
+* So many Dropbox links & Slack messages, gets confusing
+* Sometimes assets sizes are wrong
+* No easy way to see all the assets in our app
+
+---
+
+# :bulb:
+
+---
+
+## pod 'venmo-ios-images'
+
+---
+
+# :bulb:
+
+* Designer designs and exports assets
+
+---
+
+# :bulb:
+
+* Designer designs and exports assets
+* Designer makes pull-request to venmo-ios-images repo
+
+---
+
+# :bulb:
+
+* Designer designs and exports assets
+* Designer makes pull-request to venmo-ios-images repo
+* Engineer reviews changes and merges
+
+---
+# :bulb:
+
+* Designer designs and exports assets
+* Designer makes pull-request to venmo-ios-images repo
+* Engineer reviews changes and merges
+* Engineer generates UIImage category for the new image(s)
+
+---
+# :bulb:
+
+* Designer designs and exports assets
+* Designer makes pull-request to venmo-ios-images repo
+* Engineer reviews changes and merges
+* Engineer generates UIImage category for the new image(s)
+* pod update :rocket:
+
+---
+
+* Engineer generates UIImage category for the new image(s)
+
+---
+
+# We’re **LAZY**
+
+---
+
+# Automate all the things!
+
+---
+
 # January 22nd, 2015
 
 Ayaka Nonaka [11:07 AM]
 ok time to write..... ruby? or.... swift?!
 actually not sure if i want to go down that path
 a 2 day long project is going to turn into like a 7 day long project lol
-i might look into swift though that might be kind of fun
+i might look into swift though
+that might be kind of fun
+
+---
+
+# January 22nd, 2015
 
 Eli Perkins [11:08 AM]
 swift could be fun!
+
+---
+
+# :smirk:
+# Challenge accepted
 
 ---
 
