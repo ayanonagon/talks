@@ -4,7 +4,7 @@ One of my goals this year is to present at more places. Here is my up-to-date sc
 
 | Date       | Title | Where |
 | ---------- | ----- | ----- |
-| 21 - 22 Mar 2015 | TBA | [Swift Summit][5] |
+| 21 - 22 Mar 2015 | Swift Scripting | [Swift Summit][5] |
 
 
 ## Past Talks
