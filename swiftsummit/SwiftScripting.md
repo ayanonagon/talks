@@ -4,10 +4,6 @@
 
 ---
 
-## swift in production app? :rocket:
-
----
-
 # January 22nd, 2015
 
 Ayaka Nonaka [11:07 AM]
@@ -18,6 +14,13 @@ i might look into swift though that might be kind of fun
 
 Eli Perkins [11:08 AM]
 swift could be fun!
+
+---
+
+# Swift 
+* familiar API’s
+* “light” feeling language
+* overly protective compiler is a caring compiler
 
 ---
 
@@ -49,15 +52,19 @@ swift could be fun!
 
 ---
 
+### chmod +x hello-world.swift
+
+---
+
+### xcrun swift hello-world.swift
+
+---
+
 ### #!/usr/bin/env xcrun swift
 
 ---
 
-### chmod +x hello.swift
-
----
-
-### ./hello.swift
+### ./hello-world.swift
 
 ---
 
@@ -126,7 +133,6 @@ Alamofire.framework    PrettyColors.framework
 
 ---
 
-
 ```
 ➜  swiftsummit git:(master) ✗ swift -help
 OVERVIEW: Swift compiler
@@ -147,8 +153,10 @@ OPTIONS:
 ---
 
 * jdhealy/PrettyColors
-* another/example
-* another/example
+* thoughtbot/Argo
+* kylef/CLIKit
+* nomothetis/SemverKit
+* ???
 
 ---
 
