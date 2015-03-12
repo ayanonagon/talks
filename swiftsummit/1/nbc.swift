@@ -15,7 +15,7 @@ func tag(text: String, scheme: String) -> [TaggedToken] {
     var tokens: [TaggedToken] = []
 
     // Using NSLinguisticTagger
-    tagger.enumerateTagsInRange(NSMakeRange(0, count(text)), scheme:scheme, options: options) { tag, tokenRange, _, _ in
+    tagger.enumerateTagsInRange(NSMakeRange(0, countElements(text)), scheme:scheme, options: options) { tag, tokenRange, _, _ in
         let token = (text as NSString).substringWithRange(tokenRange)
         tokens.append((token, tag))
     }
@@ -24,6 +24,14 @@ func tag(text: String, scheme: String) -> [TaggedToken] {
 
 func lemmatize(text: String) -> [TaggedToken] {
     return tag(text, NSLinguisticTagSchemeLemma)
+}
+
+func unique<T:Hashable>(list: [T]) -> [T] {  
+    var filter = Dictionary<T,Bool>()
+    for (i, _) in enumerate(list) {
+        filter[list[i]] = true
+    }
+    return Array(filter.keys)
 }
 
 // MARK: - NaiveBayesClassifier
@@ -51,7 +59,7 @@ public class NaiveBayesClassifier {
     }
 
     public func trainWithTokens(tokens: [String], category: Category) {
-        let tokens = Set(tokens)
+        let tokens = unique(tokens)
         for token in tokens {
             incrementToken(token, category: category)
         }
@@ -73,7 +81,7 @@ public class NaiveBayesClassifier {
             let pCategory = P(category)
             let score = tokens.reduce(log(pCategory)) { (total, token) in
                 // P(W=token|C=cat) = P(C=cat, W=token) / P(C=cat)
-                total + log((P(category, token) + smoothingParameter) / (pCategory + smoothingParameter * Double(tokenCount)))
+                total + log((self.P(category, token) + self.smoothingParameter) / (pCategory + self.smoothingParameter * Double(self.tokenCount)))
             }
             if score > maxCategoryScore {
                 maxCategory = category
