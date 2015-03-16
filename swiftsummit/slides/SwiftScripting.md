@@ -113,6 +113,52 @@
 
 ---
 
+# **Script** all the things!
+
+---
+
+## Scripting
+
+* Run from CLI
+* Light-weight (no Xcode projects?)
+* Tooling
+
+---
+
+# January 22nd, 2015
+
+Ayaka Nonaka [11:07 AM]
+ok time to write..... ruby? or.... swift?!
+
+---
+
+# January 22nd, 2015
+
+Ayaka Nonaka [11:07 AM]
+ok time to write..... ruby? or.... swift?!
+actually not sure if i want to go down that path
+
+---
+
+# January 22nd, 2015
+
+Ayaka Nonaka [11:07 AM]
+ok time to write..... ruby? or.... swift?!
+actually not sure if i want to go down that path
+a 2 day long project is going to turn into like a 7 day long project lol
+
+---
+
+# January 22nd, 2015
+
+Ayaka Nonaka [11:07 AM]
+ok time to write..... ruby? or.... swift?!
+actually not sure if i want to go down that path
+a 2 day long project is going to turn into like a 7 day long project lol
+i might look into swift though
+
+---
+
 # January 22nd, 2015
 
 Ayaka Nonaka [11:07 AM]
@@ -136,6 +182,10 @@ swift could be fun!
 
 ---
 
+[snippet from venmo-image-assets script]
+
+---
+
 # Swift 
 * familiar API’s
 * “light” feeling language
@@ -152,22 +202,6 @@ swift could be fun!
 ---
 
 ## Just another reason to write Swift
-
----
-
-[snippet from venmo-image-assets script]
-
----
-
-# Scripting?
-
----
-
-## Scripting
-
-* Run from CLI
-* Light-weight (no Xcode projects?)
-* Tooling
 
 ---
 
