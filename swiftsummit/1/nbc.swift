@@ -1,4 +1,4 @@
-#!/usr/bin/env xcrun swift -F /Carthaage/Build
+#!/usr/bin/env xcrun swift -O
 
 import Foundation
 

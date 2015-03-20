@@ -59,7 +59,9 @@
 
 ---
 
-## pod 'venmo-ios-images'
+![original](images/cocoapods.jpg)
+
+## *pod 'venmo-ios-images'*
 
 ---
 
@@ -114,6 +116,30 @@
 ---
 
 # **Script** all the things!
+
+---
+
+## Scripting
+
+* Run from CLI
+
+---
+
+## Scripting
+
+* Run from CLI
+* Light-weight (no Xcode projects?)
+
+---
+
+![inline](images/regex.png)
+
+---
+
+## Scripting
+
+* Run from CLI
+* Light-weight (no Xcode projects?)
 
 ---
 
@@ -182,7 +208,118 @@ swift could be fun!
 
 ---
 
-[snippet from venmo-image-assets script]
+
+```swift
+#!/usr/bin/env xcrun swift
+
+import Foundation
+
+// MARK: - Helpers
+
+func writeNewline(outputStream: NSOutputStream) {
+    outputStream.write("\n", maxLength: 1)
+}
+
+func writeLine(outputStream: NSOutputStream, string: String) {
+    outputStream.write(string, maxLength: countElements(string))
+    writeNewline(outputStream)
+}
+
+func methodDeclarationFromFileName(fileName: String) -> String {
+    let noUnderscoresFileName = fileName.stringByReplacingOccurrencesOfString("_", withString: "", options: .LiteralSearch, range: nil)
+    let uncapitalizedFileName = uncapitalized(noUnderscoresFileName)
+    return "+ (UIImage *)ven_\(uncapitalizedFileName)"
+}
+
+func uncapitalized(string: String) -> String {
+    var index = advance(string.startIndex, 1)
+    let first = string.substringToIndex(index)
+    let rest = string.substringFromIndex(index)
+    return "\(first.lowercaseString)\(rest)"
+}
+
+func fileNameWithoutExtension(fileName: String) -> String {
+    let pattern = "(([a-zA-Z]|_)*)(@2x|@3x)?\\.png"
+    let expression = NSRegularExpression(pattern: pattern, options: nil, error: nil)
+    let result = expression!.matchesInString(fileName, options: nil, range: NSRange(location: 0, length: countElements(fileName)))
+    let textCheckingResult = result[0] as NSTextCheckingResult
+    let range = textCheckingResult.rangeAtIndex(1)
+    return (fileName as NSString).substringWithRange(range)
+}
+
+func imageFileNames(path: String) -> [String] {
+    let fileManager = NSFileManager.defaultManager()
+    let enumerator = fileManager.enumeratorAtPath(path)
+
+var fileNames = NSMutableOrderedSet()
+    while let fileName = enumerator?.nextObject() as? String {
+        if fileName.hasSuffix("png") {
+            fileNames.addObject(fileNameWithoutExtension(fileName))
+        }
+    }
+    return fileNames.array as [String]
+}
+
+
+// MARK: - Script that generates UIImage+VenmoImages category class
+
+let fileNames = imageFileNames("generated-assets")
+
+let categoryName = "UIImage+VenmoImages"
+let headerFileName = "\(categoryName).h"
+
+// Generate the interface
+if let outputStream = NSOutputStream(toFileAtPath: headerFileName, append: false) {
+    outputStream.open()
+    writeLine(outputStream, "#import <Foundation/Foundation.h>")
+    writeNewline(outputStream)
+    writeLine(outputStream, "@interface UIImage (VenmoImages)")
+    writeNewline(outputStream)
+
+    for fileName in fileNames {
+        writeLine(outputStream, "\(methodDeclarationFromFileName(fileName));")
+    }
+
+    writeNewline(outputStream)
+    writeLine(outputStream, "@end")
+    outputStream.close()
+} else {
+    println("Unable to open interface file")
+}
+
+// Generate the implementation
+if let implOutputStream = NSOutputStream(toFileAtPath: "\(categoryName).m", append: false) {
+    implOutputStream.open()
+    writeLine(implOutputStream, "#import \"\(headerFileName)\"")
+    writeNewline(implOutputStream)
+    writeLine(implOutputStream, "@implementation UIImage (VenmoImages)")
+    writeNewline(implOutputStream)
+
+    for fileName in fileNames {
+        writeLine(implOutputStream, "\(methodDeclarationFromFileName(fileName))")
+        writeLine(implOutputStream, "{")
+        writeLine(implOutputStream, "    return [UIImage imageNamed:@\"Venmo.bundle/\(fileName)\"];")
+        writeLine(implOutputStream, "}")
+        writeNewline(implOutputStream)
+    }
+
+    writeLine(implOutputStream, "@end")
+    implOutputStream.close()
+} else {
+    println("Unable to open implementation file")
+}
+```
+
+---
+
+# Swift 
+* familiar API’s
+
+---
+
+# Swift 
+* familiar API’s
+* “light” feeling language
 
 ---
 
@@ -205,11 +342,11 @@ swift could be fun!
 
 ---
 
-### chmod +x hello-world.swift
+### xcrun swift hello-world.swift
 
 ---
 
-### xcrun swift hello-world.swift
+### chmod +x hello-world.swift
 
 ---
 
@@ -218,6 +355,10 @@ swift could be fun!
 ---
 
 ### ./hello-world.swift
+
+---
+
+Live Demo!
 
 ---
 
@@ -305,6 +446,28 @@ OPTIONS:
 
 ---
 
+# The missing stuff
+
+* Auto-completion
+
+---
+
+# The missing stuff
+
+* Auto-completion
+* A better way to do dependency management
+
+---
+
+# The missing stuff
+
+* Auto-completion
+* A better way to do dependency management
+* More tools
+
+---
+
+* Keithbsmiley/swift.vim
 * jdhealy/PrettyColors
 * thoughtbot/Argo
 * kylef/CLIKit
