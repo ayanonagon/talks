@@ -338,7 +338,7 @@ if let implOutputStream = NSOutputStream(toFileAtPath: "\(categoryName).m", appe
 
 ---
 
-## Just another reason to write Swift
+## Just another reason to write **Swift**
 
 ---
 
@@ -473,6 +473,10 @@ OPTIONS:
 * kylef/CLIKit
 * nomothetis/SemverKit
 * ???
+
+---
+
+## bit.ly/swiftscripting
 
 ---
 
