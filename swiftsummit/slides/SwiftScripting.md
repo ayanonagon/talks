@@ -476,6 +476,24 @@ OPTIONS:
 
 ---
 
+![original](images/punicwars.jpg)
+
+# *Plot Twist*
+
+---
+
+![inline](images/rome.png)
+
+---
+
+![inline](images/rome1.png)
+
+---
+
+![inline](images/rome2.png)
+
+---
+
 ## bit.ly/swiftscripting
 
 ---
