@@ -472,6 +472,7 @@ OPTIONS:
 * thoughtbot/Argo
 * kylef/CLIKit
 * nomothetis/SemverKit
+* BananaKit? :banana:
 * ???
 
 ---
