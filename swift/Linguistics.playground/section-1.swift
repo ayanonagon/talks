@@ -1,4 +1,5 @@
 // Linguistics.playground
+// n.b. This is written for Swift 1.2 and requires some minor changes for other versions.
 
 import Foundation
 
