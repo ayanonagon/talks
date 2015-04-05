@@ -20,5 +20,5 @@ There is at least one this year, but still to be announced!
 [3]: https://speakerdeck.com/ayanonagon/open-source-at-venmo "Open-source @ Venmo"
 [4]: http://www.meetup.com/swift-language/events/220351309/
 [5]: https://www.swiftsummit.com
-[6]: https://speakerdeck.com/ayanonagon/natural-language-processing-with-swift
+[6]: http://realm.io/news/natural-language-processing-with-swift/
 [7]: https://speakerdeck.com/ayanonagon/swift-scripting
