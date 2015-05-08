@@ -2,7 +2,9 @@ One of my goals this year is to present at more places. Here is my up-to-date sc
 
 ## Upcoming Talks
 
-There is at least one this year, but still to be announced!
+| Date        | Title | Where |
+| ----------- | ----- | ----- |
+| 15-18 Sep 2015 | TBA | [NSSpain][8] |
 
 ## Past Talks
 
@@ -22,3 +24,4 @@ There is at least one this year, but still to be announced!
 [5]: https://www.swiftsummit.com
 [6]: http://realm.io/news/natural-language-processing-with-swift/
 [7]: https://speakerdeck.com/ayanonagon/swift-scripting
+[8]: http://nsspain.com/2015/
