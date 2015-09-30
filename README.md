@@ -11,6 +11,7 @@ One of my goals this year is to present at more places. Here is my up-to-date sc
 | Date        | Title | Where |
 | ----------- | ----- | ----- |
 | 18 Sep 2015 | [“Why Swift?” for everyone else & so much more][9] | [NSSpain][8] |
+| 10 Jun 2015 | [WWDC 2015 Swift Panel Discussion][12] | [Realm][13] | 
 | 21 Mar 2015 | [Swift Scripting][7] | [Swift Summit][5] |
 | 5 Mar 2015 | [Natural Language Processing with Swift][6] | [Swift Language User Group @ Realm][4] |
 | 31 Jul 2014 | [Open-source @ Venmo][3] | Braintree / Venmo Product Talk (Internal) |
@@ -29,3 +30,5 @@ One of my goals this year is to present at more places. Here is my up-to-date sc
 [9]: https://speakerdeck.com/ayanonagon/why-swift-for-everyone-else-and-so-much-more
 [10]: http://gracehopper.anitaborg.org
 [11]: http://schedule.gracehopper.org/session/delightful-mobile-experiences-behind-the-scenes-of-essential-apps/
+[12]: https://realm.io/news/apple-wwdc-2015-swift-panel-discussion/
+[13]: https://realm.io
