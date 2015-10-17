@@ -2,14 +2,13 @@ One of my goals this year is to present at more places. Here is my up-to-date sc
 
 ## Upcoming Talks
 
-| Date        | Title | Where |
-| ----------- | ----- | ----- |
-| 14 Oct 2015 | [Delightful Mobile Experiences: Behind the Scenes of Essential Apps][11] | [Grace Hopper Celebration][10] |
+TBA
 
 ## Past Talks
 
 | Date        | Title | Where |
 | ----------- | ----- | ----- |
+| 14 Oct 2015 | [Delightful Mobile Experiences: Behind the Scenes of Essential Apps][11] | [Grace Hopper Celebration][10] |
 | 18 Sep 2015 | [“Why Swift?” for everyone else & so much more][9] | [NSSpain][8] |
 | 10 Jun 2015 | [WWDC 2015 Swift Panel Discussion][12] | [Realm][13] | 
 | 21 Mar 2015 | [Swift Scripting][7] | [Swift Summit][5] |
