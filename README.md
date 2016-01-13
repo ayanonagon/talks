@@ -6,8 +6,9 @@ One of my goals is to present at more places. Here is my up-to-date schedule for
 | ----------- | ----- | ----- | -------- |
 | 29 Jan 2016 | TBA | [dotSwift][14] | Paris |
 | 2 Mar 2016 | TBA | [try! Swift][15] | Tokyo |
+| 28 - 30 Apr 2016 | TBA | [NSNorth][16] | Toronto |
 
-More to be announced later… 🐥
+If you’re interested in having me speak at a conference you are organizing, please send me a message at <ayaka@nonaka.me>. Thanks! 🐥
 
 ## Past Talks
 
@@ -38,3 +39,4 @@ More to be announced later… 🐥
 [13]: https://realm.io
 [14]: http://www.dotswift.io
 [15]: http://www.tryswiftconf.com
+[16]: https://nsnorth.ca
