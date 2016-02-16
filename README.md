@@ -19,14 +19,7 @@ If you’re interested in having me speak at a conference you are organizing, pl
 | 10 Jun 2015 | [WWDC 2015 Swift Panel Discussion][12] | [Realm][13] | San Francisco | 
 | 21 Mar 2015 | [Swift Scripting][7] | [Swift Summit][5] | London |
 | 5 Mar 2015 | [Natural Language Processing with Swift][6] | [Swift Language User Group @ Realm][4] | San Francisco |
-| 31 Jul 2014 | [Open-source @ Venmo][3] | Braintree / Venmo Product Talk (Internal) | San Francisco |
-| 29 Jul 2014 | [Building DryDock on Parse][2] | [July Bay Area Parse Meetup][1] | San Francisco |
-| 30 Jan 2014 | Lightning Talk: Venmo iOS SDK | [iOS Build-an-App Workshop (WWC)][0] | San Francisco |
 
-[0]: http://www.meetup.com/Women-Who-Code-SF/events/161951762 "iOS Build-an-App Workshop"
-[1]: http://www.meetup.com/Bay-Area-Parse-Developer-Meetup/events/192489622/ "July Bay Area Parse Meetup"
-[2]: https://speakerdeck.com/ayanonagon/building-drydock-on-parse "Building DryDock on Parse"
-[3]: https://speakerdeck.com/ayanonagon/open-source-at-venmo "Open-source @ Venmo"
 [4]: http://www.meetup.com/swift-language/events/220351309/
 [5]: https://www.swiftsummit.com
 [6]: http://realm.io/news/natural-language-processing-with-swift/
