@@ -4,7 +4,6 @@ One of my goals is to present at more places. Here is my up-to-date schedule for
 
 | Date        | Title | Event | Location |
 | ----------- | ----- | ----- | -------- |
-| 29 Jan 2016 | TBA | [dotSwift][14] | Paris |
 | 2 Mar 2016 | TBA | [try! Swift][15] | Tokyo |
 | 28 - 30 Apr 2016 | TBA | [NSNorth][16] | Toronto |
 
@@ -14,6 +13,7 @@ If you’re interested in having me speak at a conference you are organizing, pl
 
 | Date        | Title | Event | Location |
 | ----------- | ----- | ----- | -------- |
+| 29 Jan 2016 | [Going Swift and Beyond // First Wave Swift][17] | [dotSwift][14] | Paris |
 | 14 Oct 2015 | [Delightful Mobile Experiences: Behind the Scenes of Essential Apps][11] | [Grace Hopper Celebration][10] | Houston |
 | 18 Sep 2015 | [“Why Swift?” for everyone else & so much more][9] | [NSSpain][8] | Logroño |
 | 10 Jun 2015 | [WWDC 2015 Swift Panel Discussion][12] | [Realm][13] | San Francisco | 
@@ -40,3 +40,4 @@ If you’re interested in having me speak at a conference you are organizing, pl
 [14]: http://www.dotswift.io
 [15]: http://www.tryswiftconf.com
 [16]: https://nsnorth.ca
+[17]: https://speakerdeck.com/ayanonagon/first-wave-swift
