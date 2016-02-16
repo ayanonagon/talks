@@ -4,7 +4,7 @@ One of my goals is to present at more places. Here is my up-to-date schedule for
 
 | Date        | Title | Event | Location |
 | ----------- | ----- | ----- | -------- |
-| 2 Mar 2016 | TBA | [try! Swift][15] | Tokyo |
+| 2 Mar 2016 | Boundaries in Practice | [try! Swift][15] | Tokyo |
 | 28 - 30 Apr 2016 | TBA | [NSNorth][16] | Toronto |
 
 If you’re interested in having me speak at a conference you are organizing, please send me a message at <ayaka@nonaka.me>. Thanks! 🐥
