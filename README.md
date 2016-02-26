@@ -33,4 +33,4 @@ If you’re interested in having me speak at a conference you are organizing, pl
 [14]: http://www.dotswift.io
 [15]: http://www.tryswiftconf.com
 [16]: https://nsnorth.ca
-[17]: https://speakerdeck.com/ayanonagon/first-wave-swift
+[17]: http://www.thedotpost.com/2016/01/ayaka-nonaka-going-swift-and-beyond-first-wave-swift
