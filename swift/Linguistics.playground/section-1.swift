@@ -6,15 +6,15 @@ import Foundation
 typealias TaggedToken = (String, String?) // Can’t add tuples to an array without typealias. Compiler bug... Sigh.
 
 func tag(text: String, scheme: String) -> [TaggedToken] {
-    let options: NSLinguisticTaggerOptions = .OmitWhitespace | .OmitPunctuation | .OmitOther
+    let options = NSLinguisticTaggerOptions(arrayLiteral: NSLinguisticTaggerOptions.OmitWhitespace,  NSLinguisticTaggerOptions.OmitOther, NSLinguisticTaggerOptions.JoinNames)
     let tagger = NSLinguisticTagger(tagSchemes: NSLinguisticTagger.availableTagSchemesForLanguage("en"),
         options: Int(options.rawValue))
     tagger.string = text
-
+    
     var tokens: [TaggedToken] = []
-
+    
     // Using NSLinguisticTagger
-    tagger.enumerateTagsInRange(NSMakeRange(0, count(text)), scheme:scheme, options: options) { tag, tokenRange, _, _ in
+    tagger.enumerateTagsInRange(NSMakeRange(0, text.characters.count), scheme:scheme, options: options) { tag, tokenRange, _, _ in
         let token = (text as NSString).substringWithRange(tokenRange)
         tokens.append((token, tag))
     }
@@ -22,20 +22,20 @@ func tag(text: String, scheme: String) -> [TaggedToken] {
 }
 
 func partOfSpeech(text: String) -> [TaggedToken] {
-    return tag(text, NSLinguisticTagSchemeLexicalClass)
+    return tag(text, scheme: NSLinguisticTagSchemeLexicalClass)
 }
 
 partOfSpeech("I went to the store")
 partOfSpeech("I am talking quickly")
 
 func lemmatize(text: String) -> [TaggedToken] {
-    return tag(text, NSLinguisticTagSchemeLemma)
+    return tag(text, scheme: NSLinguisticTagSchemeLemma)
 }
 
 lemmatize("I went to the store")
 
 func language(text: String) -> [TaggedToken] {
-    return tag(text, NSLinguisticTagSchemeLanguage)
+    return tag(text, scheme: NSLinguisticTagSchemeLanguage)
 }
 
 language("Ik ben Ayaka")
@@ -126,7 +126,9 @@ public class NaiveBayesClassifier {
 
     private func totalOccurrencesOfToken(token: String) -> Int {
         if let occurrences = tokenOccurrences[token] {
-            return reduce(occurrences.values, 0, +)
+            occurrences.reduce(0, combine: { (previous:Int, data:(cat:Category, oc:Int)) -> Int in
+                return previous + data.oc
+            })
         }
         return 0
     }
