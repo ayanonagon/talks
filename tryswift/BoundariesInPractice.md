@@ -1,6 +1,9 @@
----
+![](atmosphere.jpg)
 
-^ Testing testing
+## 実践的
+# Boundaries
+## In Practice
+#### try! Swift 2016
 
 ---
 
@@ -10,9 +13,11 @@
 ### a.k.a. 彩花
 #### @ayanonagon
 
-^ Today I’m going to be presenting in both English and Japanese so if you’re wondering why you only understand every other sentence or why I’m saying everything twice, that’s why.
+^ Today I’m going to be presenting in both English and Japanese so if you’re wondering why you only understand every other sentence or why I’m saying everything twice, that’s why. However, for code, I’ll be explaining it in all English in the interest of time, and because Swift is a universal language.
 
-^ 今日は日本語と英語両方でお話させていただきますので宜しくお願いします。
+^ 今日は日本語と英語両方でお話させていただきますので宜しくお願いします。しかし、Swiftコードの部分は共通語なので、英語で説明させて頂きます。
+
+^ We have a lot of stuff to get through today, so let’s get started!
 
 ---
 
@@ -29,7 +34,7 @@
 ## Functional Core
 ## Imperative Shell
 
-^ The functional core, and the imperative shell. The idea is that you can make the “core” of your components functional. That is, very easy to test (it’s all input and output and no side-effects!) and much easier to understand. But not everything that we have to deal with _is_ functional. Most of us have to deal with UIKit on a daily basis and that causes all sorts of side-effects. Even networking code. That’s inherently side-effect-y and stateful. But the idea is that we can pull this out into a separate layer. An “imperative shell”
+^ The functional core, and the imperative shell. The idea is that you can make the “core” of your components functional. That is, very easy to test (it’s all input and output with no side-effects!) and much easier to understand. But not everything that we have to deal with _is_ functional. Most of us have to deal with UIKit on a daily basis and that causes all sorts of side-effects. Even networking code. That’s inherently side-effect-y and stateful. But the idea is that we can pull this out into a separate layer. An “imperative shell”
 
 ^ この講演ではFunctional Core, Imperative Shell のコンセプトが紹介されます。このコンセプトはまずコードの芯をファンクショナルするということです。ファンクショナルにする事によって、副作用がなく、テストしやすいコードを書くことができます。しかし、全てをファンクショナルにするのは無理です。例えば、UIKitを使うと副作用だらけです。APIを使ったネットワークコードもそうです。しかし、その副作用だらけのコードはimperative shellに引っ張りだすことが出来る、ということです。
 
@@ -43,7 +48,7 @@
 
 ^ イメージするとこんな感じです。 ファンクショナルで堅実な芯です。
 
-^ This Voltorb here is a nice functional immutable core.
+^ This Voltorb here is a nice functional immutable specimen.
 
 ---
 
@@ -64,7 +69,7 @@
 
 ^ そしてその一つ一つにimperative shellがあります。
 
-^ The other day my team and I rewatched a WWDC talk titled Advanced iOS Application Architecture and Patterns from WWDC 2014.
+^ The other day my team and I rewatched a talk titled Advanced iOS Application Architecture and Patterns from WWDC 2014.
 
 ^ 何週か前、私のチームはWWDC 2014 の　Advanced iOS Application Architecture and Patternsというトークを見直しました。
 
@@ -111,7 +116,7 @@
 
 ^ The first one I want to talk about is the story of the Immutable Core and the Network-y Shell.
 
-^ まず、第一。不変な芯。Network-ぽい表面の話。
+^ まず、第一。不変な芯とNetwork-ぽい表面の話。
 
 ---
 
@@ -208,7 +213,7 @@ class StoryDetailViewController: UIViewController {
 }
 ```
 
-^ This is what the detail view controller looks like right now. We have a slight problem because we can’t use the story initializer anymore, because when we’re coming from a push notification, we only have the story ID.
+^ This is what the detail view controller looks like right now. We have a slight problem. We can’t use the story initializer anymore, because when we’re coming from a push notification, we only have the story ID.
 
 ---
 
@@ -237,9 +242,9 @@ class StoryDetailViewController: UIViewController {
 }
 ```
 
-^ Then I started working on the implementation. init with story is still the same.
+^ Then I started working on the implementation. initWithStory is still the same.
 
-^ But init with story ID. How does this work? Unlike the case where we come from the StoriesViewController, which owns a list of stories, we don’t have a story object at hand to work with. And we can’t set any of the properties with out a story, so that’s a big problem.
+^ But initWithStory ID. How does this work? Unlike the case where we come from the StoriesViewController, which owns a list of stories, we don’t have a story object at hand to work with. And we can’t set any of the properties with out a story, so that’s a big problem.
 
 ---
 
@@ -271,7 +276,7 @@ class StoryDetailViewController: UIViewController {
 
 ^ I don’t know about you, but this code isn’t really suit my taste. Something feels wrong.
 
-^ Before, everything was non-optional and immutable, so there was only one way to configure this. Now there are 2 to the 4th power, 16 ways to configure the properties. Actaully, there are an infinite number of ways, since everything is mutable.
+^ Before, everything was non-optional and immutable, so there was only one way to configure this. Now there are 2 to the 4th power, 16 ways to configure the properties. Actually, there are an infinite number of ways, since everything is mutable.
 
 ^ So I thought about it more, and this is what I came up with.
 
@@ -323,7 +328,7 @@ StoryContainerViewController(storyID: "12345")
 url_scheme://stories/12345
 ```
 
-^ So that handles the stories case. But what if we handle to handle other URL’s?
+^ So that handles the stories case. But what if we need to handle other URL’s?
 
 ---
 
@@ -359,11 +364,13 @@ protocol RemoteContentProviding {
 }
 ```
 
-^ This protocol specifies two things:
+^ This protocol has an associated type Content
+
+^ And it specifies two things:
 
 ^ 1. How to fetch the content. This is most likely an API request.
 
-^ and 2. How to take the result from getting the content and convert it to a view controller to present.
+^ and 2. How to take the content and convert it to a view controller for presentation.
 
 
 ---
@@ -443,7 +450,7 @@ let provider = MessageProvider(ID: "9876")
 RemoteContentContainerViewController(provider: provider)
 ```
 
-^ By pulling out the stateful networking code into a container view controller, we were able to prevent our detail view controller into something like this:
+^ By pulling out the stateful networking code into a container view controller, we were able to prevent our detail view controller from turning into something like this:
 
 ---
 
@@ -476,7 +483,9 @@ class StoryDetailViewController: UIViewController {
 
 ![fit](voltorb-api-bad.png)
 
-^ ... and instead, we were able to main our immutable and, loosely speaking, "functional" core.
+^ Look there’s statefulness creeping into the core. The view controller is making an API request to the cloud!
+
+^ and instead, we were able to maintain our immutable and, loosely speaking, "functional" core.
 
 ---
 
@@ -498,11 +507,15 @@ class StoryDetailViewController: UIViewController {
 }
 ```
 
+^ All the properties are immutable and non-optional. You set them once, and you’re safe.
+
+^ If you visual this, it looks something like this:
+
 ---
 
 ![fit](voltorb-api-good.png)
 
-^ Look, it’s a functional core!
+^ Much better.
 
 ---
 
@@ -511,11 +524,15 @@ class StoryDetailViewController: UIViewController {
 ## Connective Shell
 #### 独立した芯と繋げる表面
 
+^ The next thing I want to share with you is the story of the Independent Cores and the Connective Shell.
+
+^ 第二。独立した芯と繋げる表面。の話。
+
 ---
 
-![](lekker.png)
+![fit](lekker.png)
 
-^ As a side-project, I’m working on an app that helps me learn Dutch.
+^ As a side-project, I’ve been working on an app that helps me learn Dutch.
 
 ^ 私は今サイドプロジェクトとしてオランダ語を勉強するアプリを開発しています。
 
@@ -530,7 +547,7 @@ class StoryDetailViewController: UIViewController {
 
 ^ One of those ideas is the Coordinators design pattern. I first heard about it last year at a talk given by Soroush at NSSpain.
 
-^ 去年、KhanlouさんのNSSpainの講演でで初めて聞きました。
+^ 去年、KhanlouさんのNSSpainの講演で初めて聞きました。
 
 ---
 
@@ -564,7 +581,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-^ Let’s start with the App Delegate. Can we please admire how tiny this is? ...
+^ Let’s start with the App Delegate. By the way, can we please admire how tiny this is?
+
+^ The App Delegate has a window as usual and ...
+
+^ Before we take a look at the ApplicationCoordinator, let’s look at the Coordinator protocol.
 
 ---
 
@@ -576,7 +597,7 @@ protocol Coordinator {
 
 ^ There are different ways to define a coordinator protocol, but the one I defined is very minimal.
 
-^ ...
+^ All it requires is a start function to kick things off. So let’s look at what an implementation of a coordinator would look like.
 
 ---
 
@@ -692,7 +713,7 @@ class PhrasesCoordinator: Coordinator {
     SearchCoordinator
 ```
 
-^ If we wanted to add a feature that adds search functionality for words, we can create a new search controller and have the words coordinator manage that.
+^ If we wanted to add a feature that adds search functionality for words, we can create a new search coordinator and have the words coordinator manage that.
 
 ^ Search featureを足したかったら、簡単にできます。WordsCoordinatorにSearchCoordinatorをたすだけです。
 
@@ -747,7 +768,7 @@ SearchCoordinator
 
 ^ そして、アプリのフローを全部コーデネーターに任せるとこんな感じです。
 
-^ ... I’d like to stop here and talk a little bit about abstraction. 
+^ ... I’d like to stop here and talk a little bit about abstraction.
 
 ---
 
@@ -765,7 +786,7 @@ SearchCoordinator
 # 堅実
 ## Solid
 
-^ And that’s why we need to look a little further. I’m finding that it’s not good enough to just abstract things through the interface. We need to think about what parts of the app make sense to be functional, immutable. That is, solid.
+^ And that’s why we need to look a little further. I’m finding that it’s not good enough to just abstract things through the interface. We need to think about what parts of the app make sense to be functional and immutable. In other words, solid.
 
 ^ まず、アーキテクチャーのどの部分がfunctional、immutable、堅実なパターンに適しているのかを把握するのが大切です。
 
@@ -776,7 +797,7 @@ SearchCoordinator
 # 流動的
 ## Fluid
 
-^ And then we need to step back and think about how each of those components interact with inherently imperative and stateful things like networking. Things that are fluid. And things that are fluid aren’t bad. In fact, they give our apps movement and life.
+^ And then we need to step back and think about how each of those components interact with inherently imperative and stateful things like networking. Things that are fluid. And things that are fluid aren’t necessarily bad. In fact, they give our apps movement and life.
 
 ^ そして同じように、どの部分がネットワークコードのように、imperative, stateful, 流動的なパターンに適しているのか把握します。
 
@@ -789,7 +810,7 @@ SearchCoordinator
 
 ![](solid-fluid.jpg)
 
-^ The key, and the most difficult part in my opinion, is finding the balance... finding the boundary between what’s considered solid and what’s considered fluid.
+^ The key, which I think the most difficult part, is finding the balance... finding the boundary between what’s considered solid and what’s considered fluid.
 
 ^ 鍵は、堅実さと流動的さのバランスを見つけることだとおもいます。その Boundary(境界)を見つける事です。
 
@@ -802,11 +823,11 @@ SearchCoordinator
 
 ![](future.jpg)
 
-^ we can write our apps that are resilient, robust, and future proof.
-
-^ I hope that you learned some new ideas today that you can start using immediately, or at least got a TASTE of what you might want to try in the future.
+^ we can write our apps that are more resilient, robust, and future proof.
 
 ^ そのバランスを見つけることで、より良い、より安全なそして将来性があるコードを書くことが出来ると思います
+
+^ I hope that you learned some new ideas today that you can start using immediately, or at least got a TASTE of what you might want to try in the future.
 
 ^ 今日は何か新しい事習った！試してみよう！と思って頂ければ嬉しいです。
 
