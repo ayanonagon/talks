@@ -5,7 +5,7 @@ One of my goals is to present at more places. Here is my up-to-date schedule for
 | Date        | Title | Event | Location |
 | ----------- | ----- | ----- | -------- |
 | 28 - 30 Apr 2016 | TBA | [NSNorth][16] | Toronto |
-| 26-27 May 2016 | TBA | [iOSCon][19] | London |
+| 26 - 27 May 2016 | TBA | [iOSCon][19] | London |
 
 If you’re interested in having me speak at a conference you are organizing, please send me a message at <ayaka@nonaka.me>. Thanks! 🐥
 
