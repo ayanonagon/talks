@@ -4,8 +4,8 @@ One of my goals is to present at more places. Here is my up-to-date schedule for
 
 | Date        | Title | Event | Location |
 | ----------- | ----- | ----- | -------- |
-| 2 Mar 2016 | Boundaries in Practice | [try! Swift][15] | Tokyo |
 | 28 - 30 Apr 2016 | TBA | [NSNorth][16] | Toronto |
+| 26-27 May 2016 | TBA | [iOSCon][19] | London |
 
 If you’re interested in having me speak at a conference you are organizing, please send me a message at <ayaka@nonaka.me>. Thanks! 🐥
 
@@ -13,6 +13,7 @@ If you’re interested in having me speak at a conference you are organizing, pl
 
 | Date        | Title | Event | Location |
 | ----------- | ----- | ----- | -------- |
+| 2 Mar 2016 | [Boundaries in Practice][18] | [try! Swift][15] | Tokyo |
 | 29 Jan 2016 | [Going Swift and Beyond // First Wave Swift][17] | [dotSwift][14] | Paris |
 | 14 Oct 2015 | [Delightful Mobile Experiences: Behind the Scenes of Essential Apps][11] | [Grace Hopper Celebration][10] | Houston |
 | 18 Sep 2015 | [“Why Swift?” for everyone else & so much more][9] | [NSSpain][8] | Logroño |
@@ -34,3 +35,5 @@ If you’re interested in having me speak at a conference you are organizing, pl
 [15]: http://www.tryswiftconf.com
 [16]: https://nsnorth.ca
 [17]: http://www.thedotpost.com/2016/01/ayaka-nonaka-going-swift-and-beyond-first-wave-swift
+[18]: https://speakerdeck.com/ayanonagon/shi-jian-de-boundaries
+[19]: https://skillsmatter.com/conferences/7598-ioscon-2016-the-conference-for-ios-and-swift-developers
