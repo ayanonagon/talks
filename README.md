@@ -4,8 +4,9 @@ One of my goals is to present at more places. Here is my up-to-date schedule for
 
 | Date        | Title | Event | Location |
 | ----------- | ----- | ----- | -------- |
-| 28 - 30 Apr 2016 | TBA | [NSNorth][16] | Toronto |
 | 26 - 27 May 2016 | TBA | [iOSCon][19] | London |
+| 14 June 2016 | TBA | [AltConf 2016][21] | San Francisco |
+| 7 - 8 Nov 2016 | TBA | [Swift Summit 2016][22] | San Francisco |  
 
 If you’re interested in having me speak at a conference you are organizing, please send me a message at <ayaka@nonaka.me>. Thanks! 🐥
 
@@ -13,6 +14,7 @@ If you’re interested in having me speak at a conference you are organizing, pl
 
 | Date        | Title | Event | Location |
 | ----------- | ----- | ----- | -------- |
+| 29 Apr 2016 | [Clean Layout with iOS 9][20] | [NSNorth][16] | Toronto |
 | 2 Mar 2016 | [Boundaries in Practice][18] | [try! Swift][15] | Tokyo |
 | 29 Jan 2016 | [Going Swift and Beyond // First Wave Swift][17] | [dotSwift][14] | Paris |
 | 14 Oct 2015 | [Delightful Mobile Experiences: Behind the Scenes of Essential Apps][11] | [Grace Hopper Celebration][10] | Houston |
@@ -37,3 +39,6 @@ If you’re interested in having me speak at a conference you are organizing, pl
 [17]: http://www.thedotpost.com/2016/01/ayaka-nonaka-going-swift-and-beyond-first-wave-swift
 [18]: https://speakerdeck.com/ayanonagon/shi-jian-de-boundaries
 [19]: https://skillsmatter.com/conferences/7598-ioscon-2016-the-conference-for-ios-and-swift-developers
+[20]: https://speakerdeck.com/ayanonagon/clean-layout-with-ios-9
+[21]: http://altconf.com
+[22]: https://www.swiftsummit.com
