@@ -6,6 +6,7 @@ One of my goals is to present at more places. Here is my up-to-date schedule for
 | ----------- | ----- | ----- | -------- |
 | 26 - 27 May 2016 | TBA | [iOSCon][19] | London |
 | 14 June 2016 | TBA | [AltConf 2016][21] | San Francisco |
+| 8 July 2016 | TBA | [CMD+U Conference][23] | Barcelona |
 | 7 - 8 Nov 2016 | TBA | [Swift Summit 2016][22] | San Francisco |  
 
 If you’re interested in having me speak at a conference you are organizing, please send me a message at <ayaka@nonaka.me>. Thanks! 🐥
@@ -42,3 +43,4 @@ If you’re interested in having me speak at a conference you are organizing, pl
 [20]: https://speakerdeck.com/ayanonagon/clean-layout-with-ios-9
 [21]: http://altconf.com
 [22]: https://www.swiftsummit.com
+[23]: http://www.cmduconf.com
