@@ -32,7 +32,7 @@ extension String {
 
 // MARK: - Localization
 
-struct LocalizedString: Hashable {
+struct LocalizedString: Hashable, Equatable {
     let string: String
     let description: String?
     
