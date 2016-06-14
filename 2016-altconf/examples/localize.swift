@@ -6,9 +6,9 @@ import CommonCrypto
 // MARK: String
 
 extension String {
-    func truncate(length: Int) -> String {
+    func truncate(to length: Int) -> String {
         if characters.count > length {
-            return substringToIndex(startIndex.advancedBy(length))
+            return substring(to: characters.index(startIndex, offsetBy: length))
         } else {
             return self
         }
@@ -19,11 +19,14 @@ extension String {
 
 extension String {
     func sha1() -> String {
-        let data = self.dataUsingEncoding(NSUTF8StringEncoding)!
-        var digest = [UInt8](count:Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
-        CC_SHA1(data.bytes, CC_LONG(data.length), &digest)
+        let data = self.data(using: .utf8)!
+        var digest = [UInt8](repeating: 0, count:Int(CC_SHA1_DIGEST_LENGTH))
+        _ = data.withUnsafeBytes {
+            CC_SHA1($0, CC_LONG(data.count), &digest)
+        }
+
         let hexBytes = digest.map { String(format: "%02hhx", $0) }
-        return hexBytes.joinWithSeparator("")
+        return hexBytes.joined(separator: "")
     }
 }
 
@@ -43,86 +46,85 @@ func ==(lhs: LocalizedString, rhs: LocalizedString) -> Bool {
     return lhs.string == rhs.string && lhs.description == rhs.description
 }
 
-func sanitizedStringForLocalization(string: String) -> String {
-    var result = string;
-    let nonAlphaNumeric = NSCharacterSet.alphanumericCharacterSet().invertedSet.mutableCopy() as! NSMutableCharacterSet
-    nonAlphaNumeric.removeCharactersInString(" ")
-    result = result.componentsSeparatedByCharactersInSet(nonAlphaNumeric).joinWithSeparator("")
-    result = result.stringByReplacingOccurrencesOfString(" ", withString: "_")
-    return result.lowercaseString.truncate(20)
+func sanitizedString(for string: String) -> String {
+    var result = string
+    var nonAlphaNumeric = NSMutableCharacterSet.alphanumerics().inverted
+    nonAlphaNumeric.remove(charactersIn: " ")
+    result = result.components(separatedBy: nonAlphaNumeric).joined(separator: "")
+    result = result.replacingOccurrences(of: " ", with: "_")
+    return result.lowercased().truncate(to: 20)
 }
 
-func hashForKey(key: String, description: String?) -> String {
+func hash(for key: String, description: String?) -> String {
     let hash: String
     if let description = description {
         hash = (key + description).sha1()
     } else {
         hash = key.sha1()
     }
-    return hash.truncate(8)
+    return hash.truncate(to: 8)
 }
 
-func lookUpStringForKey(key: String, description: String? = nil) -> String {
-    var lookUp = "ios-\(sanitizedStringForLocalization(key))"
+func lookUpString(for key: String, description: String? = nil) -> String {
+    var lookUp = "ios-\(sanitizedString(for: key))"
     if let description = description {
-        lookUp = lookUp + "-\(sanitizedStringForLocalization(description))"
+        lookUp = lookUp + "-\(sanitizedString(for: description))"
     }
-    lookUp = lookUp + "-\(hashForKey(key, description: description))"
+    lookUp = lookUp + "-\(hash(for: key, description: description))"
     return lookUp
 }
 
-func getMatches(line: String) throws -> [NSTextCheckingResult] {
+func matches(in line: String) throws -> [TextCheckingResult] {
     let pattern = "WFLocalizedString\\(@\"([^\"]*)\"\\)"
-    let regex = try NSRegularExpression(pattern: pattern, options: [])
-    let matches = regex.matchesInString(line, options: [], range: NSRange(location: 0, length: line.utf16.count))
+    let regex = try RegularExpression(pattern: pattern, options: [])
+    let matches = regex.matches(in: line, options: [], range: NSRange(location: 0, length: line.utf16.count))
     
     if matches.count > 0 {
         return matches
     }
     
     let descriptivePattern = "WFLocalizedStringWithDescription\\(@\"([^\"]*)\", @\"([^\"]*)\"\\)"
-    let descriptiveRegex = try NSRegularExpression(pattern: descriptivePattern, options: [])
-    return descriptiveRegex.matchesInString(line, options: [], range: NSRange(location: 0, length: line.utf16.count))
+    let descriptiveRegex = try RegularExpression(pattern: descriptivePattern, options: [])
+    return descriptiveRegex.matches(in: line, options: [], range: NSRange(location: 0, length: line.utf16.count))
 }
 
-func getLocalizedStrings(line: String) throws -> [LocalizedString] {
-    let matches = try getMatches(line)
-    return matches.flatMap {
+func localizedStrings(in line: String) throws -> [LocalizedString] {
+    return try matches(in: line).map {
         let line = line as NSString
-        let string = line.substringWithRange($0.rangeAtIndex(1))
+        let string = line.substring(with: $0.range(at: 1))
         
         var description: String? = nil
         if $0.numberOfRanges > 2 {
-            description = line.substringWithRange($0.rangeAtIndex(2))
+            description = line.substring(with: $0.range(at: 2))
         }
         
         return LocalizedString(string: string, description: description)
     }
 }
 
-func localizationKeyValueLineFromLocalizedString(localizedString: LocalizedString) -> String {
-    return "\"\(lookUpStringForKey(localizedString.string, description: localizedString.description))\" = \"\(localizedString.string)\";"
+func localizationKeyValueLine(from localizedString: LocalizedString) -> String {
+    return "\"\(lookUpString(for: localizedString.string, description: localizedString.description))\" = \"\(localizedString.string)\";"
 }
 
-func descriptionCommentLineFromLocalizedString(localizedString: LocalizedString) -> String? {
+func descriptionCommentLine(from localizedString: LocalizedString) -> String? {
     guard let description = localizedString.description else { return nil }
     return "/* \(description) */"
 }
 
-func localizationLinesFromLocalizedString(localizedString: LocalizedString) -> String {
+func localizationLines(from localizedString: LocalizedString) -> String {
     var lines = ""
-    if let descriptionCommentLine = descriptionCommentLineFromLocalizedString(localizedString) {
+    if let descriptionCommentLine = descriptionCommentLine(from: localizedString) {
         lines = lines + descriptionCommentLine + "\n"
     }
-    return lines + localizationKeyValueLineFromLocalizedString(localizedString)
+    return lines + localizationKeyValueLine(from: localizedString)
 }
 
 // MARK: - File System
 
-func getEnumeratorForDirectory(directory: String) -> NSDirectoryEnumerator? {
+func enumerator(for directory: String) -> FileManager.DirectoryEnumerator? {
     guard
-        let directoryURL = NSURL(string: directory),
-        let enumerator = NSFileManager.defaultManager().enumeratorAtURL(directoryURL, includingPropertiesForKeys: nil, options: [.SkipsPackageDescendants, .SkipsHiddenFiles], errorHandler: nil)
+        let directoryURL = URL(string: directory),
+        let enumerator = FileManager.default().enumerator(at: directoryURL, includingPropertiesForKeys: nil, options: [.skipsPackageDescendants, .skipsHiddenFiles], errorHandler: nil)
         else {
             print("Error: \(directory) directory not found.")
             return nil
@@ -130,26 +132,25 @@ func getEnumeratorForDirectory(directory: String) -> NSDirectoryEnumerator? {
     return enumerator
 }
 
-func localize(directory: String) throws {
+func localize(_ directory: String) throws {
     let outputFile = directory + "/Localization/Base.lproj/Localizable.strings"
 
-    guard let enumerator = getEnumeratorForDirectory(directory) else { return }
-    guard let URLs = enumerator.allObjects as? [NSURL] else {
+    guard let enumerator = enumerator(for: directory) else { return }
+    guard let URLs = enumerator.allObjects as? [URL] else {
         print("Unexpected error: Enumerator contained item that is not NSURL.")
         return
     }
-    
+
     let implementationURLs = URLs.filter { URL in
         return URL.lastPathComponent!.hasSuffix(".m") || URL.lastPathComponent!.hasSuffix(".mm")
     }
-    
+
     var uniqueLocalizedStrings = Set<LocalizedString>()
     for URL in implementationURLs {
-        guard let code = try? String(contentsOfURL: URL, encoding: NSUTF8StringEncoding) else {
-            continue;
+        guard let code = try? String(contentsOf: URL, encoding: String.Encoding.utf8) else {
+            continue
         }
-        let localizedStrings = try getLocalizedStrings(code)
-        for l in localizedStrings {
+        for l in try localizedStrings(in: code) {
             uniqueLocalizedStrings.insert(l)
         }
     }
@@ -157,20 +158,20 @@ func localize(directory: String) throws {
     var output = ""
     
     let uniqueLocalizedStringsArray = Array(uniqueLocalizedStrings)
-    let sortedUniqueLocalizedString = uniqueLocalizedStringsArray.sort { first, second in
+    let sortedUniqueLocalizedString = uniqueLocalizedStringsArray.sorted { first, second in
         if first != second { return first.string < second.string }
         return first.description < second.description
     }
     for string in sortedUniqueLocalizedString {
-        output = output + localizationLinesFromLocalizedString(string) + "\n\n"
+        output = output + localizationLines(from: string) + "\n\n"
     }
     
-    try output.writeToFile(outputFile, atomically: false, encoding: NSUTF8StringEncoding)
+    try output.write(toFile: outputFile, atomically: false, encoding: String.Encoding.utf8)
 }
 
 // MARK: - Script
 
-func run(workspaceDirectory: String) throws {
+func run(_ workspaceDirectory: String) throws {
     let directories = ["Workflow", "WorkflowUI", "ActionKit"]
     for directory in directories {
         try localize(workspaceDirectory + "/" + directory)

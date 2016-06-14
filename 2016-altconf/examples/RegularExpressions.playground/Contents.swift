@@ -2,18 +2,18 @@
 
 import UIKit
 
-func getMatches(line: String) throws -> [NSTextCheckingResult] {
+func matches(in line: String) throws -> [TextCheckingResult] {
     let pattern = "WFLocalizedString\\(@\"([^\"]*)\"\\)"
-    let regex = try NSRegularExpression(pattern: pattern, options: [])
-    let matches = regex.matchesInString(line, options: [], range: NSRange(location: 0, length: line.utf16.count))
+    let regex = try RegularExpression(pattern: pattern, options: [])
+    let matches = regex.matches(in: line, options: [], range: NSRange(location: 0, length: line.utf16.count))
     
     if matches.count > 0 {
         return matches
     }
 
     let descriptivePattern = "WFLocalizedStringWithDescription\\(@\"([^\"]*)\", @\"([^\"]*)\"\\)"
-    let descriptiveRegex = try NSRegularExpression(pattern: descriptivePattern, options: [])
-    return descriptiveRegex.matchesInString(line, options: [], range: NSRange(location: 0, length: line.utf16.count))
+    let descriptiveRegex = try RegularExpression(pattern: descriptivePattern, options: [])
+    return descriptiveRegex.matches(in: line, options: [], range: NSRange(location: 0, length: line.utf16.count))
 }
 
 struct LocalizedString {
@@ -21,20 +21,19 @@ struct LocalizedString {
     let description: String?
 }
 
-func getLocalizedStrings(line: String) throws -> [LocalizedString] {
-    let matches = try getMatches(line)
-    return matches.map {
+func localizedStrings(in line: String) throws -> [LocalizedString] {
+    return try matches(in: line).map {
         let line = line as NSString
-        let string = line.substringWithRange($0.rangeAtIndex(1))
+        let string = line.substring(with: $0.range(at: 1))
         
         var description: String? = nil
         if $0.numberOfRanges > 2 {
-            description = line.substringWithRange($0.rangeAtIndex(2))
+            description = line.substring(with: $0.range(at: 2))
         }
         
         return LocalizedString(string: string, description: description)
     }
 }
 
-try? getLocalizedStrings("[self setTitle:WFLocalizedString(@\"Create Workflow\") forState:UIControlStateNormal];")
-try? getLocalizedStrings("[self setTitle:WFLocalizedStringWithDescription(@\"Create Workflow\", @\"Button\") forState:UIControlStateNormal];")
+try? localizedStrings(in: "[self setTitle:WFLocalizedString(@\"Create Workflow\") forState:UIControlStateNormal];")
+try? localizedStrings(in: "[self setTitle:WFLocalizedStringWithDescription(@\"Create Workflow\", @\"Button\") forState:UIControlStateNormal];")
