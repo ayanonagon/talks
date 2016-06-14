@@ -37,15 +37,15 @@ build-lists: true
 
 ---
 
-# [fit] English = 339 Million Native Speakers
+# [fit] English = > 300 Million Native Speakers
 
 ---
 
-# [fit] Spanish = 427 Million Native Speakers
+# [fit] Spanish = > 400 Million Native Speakers
 
 ---
 
-# [fit] Chinese = 1.3 Billion Native Speakers
+# [fit] Chinese = > 1.3 *Billion* Native Speakers
 
 ---
 
@@ -393,7 +393,7 @@ NSLocalizedString("Run", comment: "Go on a run title")
 ---
 
 # [fit] NS*Regular*
-# [fit] *Expression* :scream: :scream:
+# [fit] *Expressions* :scream: :scream:
 
 ---
 

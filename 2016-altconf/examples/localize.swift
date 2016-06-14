@@ -134,6 +134,7 @@ func enumerator(for directory: String) -> FileManager.DirectoryEnumerator? {
 
 func localize(_ directory: String) throws {
     let outputFile = directory + "/Localization/Base.lproj/Localizable.strings"
+    print("Writing to file: \(outputFile)")
 
     guard let enumerator = enumerator(for: directory) else { return }
     guard let URLs = enumerator.allObjects as? [URL] else {
