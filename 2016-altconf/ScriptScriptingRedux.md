@@ -15,7 +15,7 @@ build-lists: true
 
 ![](workflow.png)
 
-^ About 5 weeks ago (maybe exactly 5?) I joined the team that builds Workflow. One of the most fun things I’ve worked on has been localization, and in particular, using Swift to help us achieve that. And that’s what I’d like to share today.
+^ About 5 weeks ago (maybe exactly 5?) I joined the team that builds Workflow. One of the most fun things I’ve worked on has been localization, and in particular, using Swift to help us achieve that. And that’s what I’d like to talk about today.
 
 ---
 
@@ -33,9 +33,7 @@ build-lists: true
 
 ![](temple.jpg)
 
-^ Well outside of the US, we have the most users in Germany, China, and Japan. And we’ve gotten a lot of requests to bring Workflow to their respective languages.
-
-^ So how do we localize an app? Let’s start with the fundamental building block NSLocalizedString.
+^ Well outside of the US, we have the most users in Germany, China, and Japan. And we’ve gotten a lot of requests to bring Workflow to their respective languages. And if you look at the numbers...
 
 ---
 
@@ -47,15 +45,7 @@ build-lists: true
 
 ---
 
-# [fit] Chinese = 1,302 Million Native Speakers
-
----
-
-# [fit] Chinese = 1,302 Million Native Speakers
-
----
-
-# [fit] Chinese = 1.3 Billion Speakers
+# [fit] Chinese = 1.3 Billion Native Speakers
 
 ---
 
@@ -418,18 +408,18 @@ _`"WFLocalizedStringWithDescription\\(@\"([^\"]*)\", @\"([^\"]*)\"\\)"`_
 ---
 
 ```swift
-func getMatches(line: String) throws -> [NSTextCheckingResult] {
+func getMatches(in line: String) throws -> [TextCheckingResult] {
     let pattern = "WFLocalizedString\\(@\"([^\"]*)\"\\)"
-    let regex = try NSRegularExpression(pattern: pattern, options: [])
-    let matches = regex.matchesInString(line, options: [], range: NSRange(location: 0, length: line.utf16.count))
+    let regex = try RegularExpression(pattern: pattern, options: [])
+    let matches = regex.matches(in: line, options: [], range: NSRange(location: 0, length: line.utf16.count))
 
     if matches.count > 0 {
         return matches
     }
 
     let descriptivePattern = "WFLocalizedStringWithDescription\\(@\"([^\"]*)\", @\"([^\"]*)\"\\)"
-    let descriptiveRegex = try NSRegularExpression(pattern: descriptivePattern, options: [])
-    return descriptiveRegex.matchesInString(line, options: [], range: NSRange(location: 0, length: line.utf16.count))
+    let descriptiveRegex = try RegularExpression(pattern: descriptivePattern, options: [])
+    return descriptiveRegex.matches(in: line, options: [], range: NSRange(location: 0, length: line.utf16.count))
 }
 ```
 
@@ -441,16 +431,17 @@ struct LocalizedString {
     let description: String?
 }
 
-func getLocalizedStrings(line: String) throws -> [LocalizedString] {
-    let matches = try getMatches(line)
+func getLocalizedStrings(in line: String) throws -> [LocalizedString] {
+    let matches = try getMatches(in: line)
     return matches.map {
         let line = line as NSString
-        let string = line.substringWithRange($0.rangeAtIndex(1))
+        let string = line.substring(with: $0.range(at: 1))
 
         var description: String? = nil
         if $0.numberOfRanges > 2 {
-            description = line.substringWithRange($0.rangeAtIndex(2))
+            description = line.substring(with: $0.range(at: 2))
         }
+
         return LocalizedString(string: string, description: description)
     }
 }
@@ -463,7 +454,13 @@ func getLocalizedStrings(line: String) throws -> [LocalizedString] {
 
 ---
 
+# [fit] Demo
+
 ![](regex-playground.png)
+
+---
+
+# **Script?**
 
 ---
 
@@ -501,7 +498,7 @@ print("Hello AltConf 2016!")
 
 ---
 
-### `Localizable.strings`
+# [fit] Demo
 
 ---
 
@@ -518,11 +515,6 @@ print("Hello AltConf 2016!")
 ---
 
 # **But lots of fun!**
-
----
-
-### **Script** the *tedious* parts.
-### **Focus** on the *nuanced* parts.
 
 ---
 
@@ -580,6 +572,11 @@ print("Hello AltConf 2016!")
 ---
 
 ![fit](dutch-4.png)
+
+---
+
+### **Script** the *tedious* parts.
+### **Focus** on the *nuanced* parts.
 
 ---
 
