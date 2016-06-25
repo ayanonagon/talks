@@ -4,7 +4,6 @@ One of my goals is to present at more places. Here is my up-to-date schedule for
 
 | Date        | Title | Event | Location |
 | ----------- | ----- | ----- | -------- |
-| 14 June 2016 | TBA | [AltConf 2016][21] | San Francisco |
 | 8 July 2016 | TBA | [CMD+U Conference][23] | Barcelona |
 | 7 - 8 Nov 2016 | TBA | [Swift Summit 2016][22] | San Francisco |  
 
@@ -14,6 +13,7 @@ If you’re interested in having me speak at a conference you are organizing, pl
 
 | Date        | Title | Event | Location |
 | ----------- | ----- | ----- | -------- |
+| 14 June 2016 | Swift Scripting Redux: Localization | [AltConf 2016][21] | San Francisco |
 | 27 May 2016 | Boundaries in Practice (English) | [iOSCon][19] | London |
 | 29 Apr 2016 | [Clean Layout with iOS 9][20] | [NSNorth][16] | Toronto |
 | 2 Mar 2016 | [Boundaries in Practice (English + Japanese)][18] | [try! Swift][15] | Tokyo |
