@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>64188DD1-0A1F-4AE8-AD2E-4C037BF166BA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>playground</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7A171566E1D6DE4980BE12E776731ACD25D9D14C</key>
+		<string>github.com:ayanonagon/talks.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>2016-altconf/examples/RegularExpressions.playground/playground.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7A171566E1D6DE4980BE12E776731ACD25D9D14C</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:ayanonagon/talks.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7A171566E1D6DE4980BE12E776731ACD25D9D14C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7A171566E1D6DE4980BE12E776731ACD25D9D14C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>talks</string>
+		</dict>
+	</array>
+</dict>
+</plist>
