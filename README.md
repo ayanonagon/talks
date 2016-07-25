@@ -4,7 +4,6 @@ One of my goals is to present at more places. Here is my up-to-date schedule for
 
 | Date        | Title | Event | Location |
 | ----------- | ----- | ----- | -------- |
-| 21 July 2016 | Testing: View Models & Protocols | [iOS Dev Camp DC][24] | Washington DC |
 | 12 - 14 Oct 2016 | TBA | [#Pragma Conference][25] | Verona |
 | 7 - 8 Nov 2016 | TBA | [Swift Summit 2016][22] | San Francisco |
 
@@ -14,6 +13,7 @@ If you’re interested in having me speak at a conference you are organizing, pl
 
 | Date        | Title | Event | Location |
 | ----------- | ----- | ----- | -------- |
+| 21 July 2016 | Testing: View Models & Protocols | [iOS Dev Camp DC][24] | Washington DC |
 | 8 July 2016 | Testing: View Models & Protocols | [CMD+U Conference][23] | Barcelona |
 | 14 June 2016 | [Swift Scripting Redux: Localization][26] | [AltConf 2016][21] | San Francisco |
 | 27 May 2016 | Boundaries in Practice (English) | [iOSCon][19] | London |
